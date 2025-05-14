@@ -1,6 +1,5 @@
 import 'package:api_test/app_theme.dart';
 import 'package:api_test/model/imat/product.dart';
-import 'package:api_test/model/imat/util/functions.dart';
 import 'package:api_test/model/imat_data_handler.dart';
 import 'package:api_test/pages/account_view.dart';
 import 'package:api_test/pages/history_view.dart';
@@ -20,23 +19,57 @@ class MainView extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
+          // Header Row
           SizedBox(height: AppTheme.paddingLarge),
           _header(context),
           SizedBox(height: AppTheme.paddingMedium),
+          
+          // Main Content Area
           Expanded(
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                // Left Panel (Filters)
                 _leftPanel(iMat),
+                
+                // Center Stage (Products) - Wider now
                 SizedBox(
-                  width: 580,
-                  //height: 400,
+                  width: 700,  // Increased from 580
                   child: _centerStage(context, products),
                 ),
+                
+                // Right Column (User and Cart)
                 SizedBox(
                   width: 300,
-                  //color: Colors.blueGrey,
-                  child: _shoppingCart(iMat),
+                  child: Column(
+                    children: [
+                      // User Account Section
+                      ElevatedButton(
+                        onPressed: () => _showAccount(context),
+                        child: const Text('Användare'),
+                      ),
+                      SizedBox(height: AppTheme.paddingMedium),
+                      
+                      // Purchase History
+                      ElevatedButton(
+                        onPressed: () => _showHistory(context),
+                        child: const Text('Köphistorik'),
+                      ),
+                      SizedBox(height: AppTheme.paddingMedium),
+                      
+                      // Shopping Cart - Now below user and history
+                      const Text('Kundvagn'),
+                      SizedBox(height: AppTheme.paddingSmall),
+                      Expanded(
+                        child: CartView(),
+                      ),
+                      SizedBox(height: AppTheme.paddingSmall),
+                      ElevatedButton(
+                        onPressed: () => iMat.placeOrder(),
+                        child: const Text('Köp!'),
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
@@ -49,13 +82,11 @@ class MainView extends StatelessWidget {
   Widget _shoppingCart(ImatDataHandler iMat) {
     return Column(
       children: [
-        Text('Kundvagn'),
+        const Text('Kundvagn'),
         SizedBox(height: 600, child: CartView()),
         ElevatedButton(
-          onPressed: () {
-            iMat.placeOrder();
-          },
-          child: Text('Köp!'),
+          onPressed: () => iMat.placeOrder(),
+          child: const Text('Köp!'),
         ),
       ],
     );
@@ -64,28 +95,23 @@ class MainView extends StatelessWidget {
   Container _leftPanel(ImatDataHandler iMat) {
     return Container(
       width: 300,
-      color: const Color.fromARGB(255, 154, 172, 134),
+      color: const Color.fromARGB(255, 255, 255, 255),
       child: Column(
         children: [
           SizedBox(height: AppTheme.paddingSmall),
           SizedBox(
             width: 132,
             child: ElevatedButton(
-              onPressed: () {
-                iMat.selectAllProducts();
-              },
-              child: Text('Visa allt'),
+              onPressed: () => iMat.selectAllProducts(),
+              child: const Text('Visa allt'),
             ),
           ),
           SizedBox(height: AppTheme.paddingSmall),
           SizedBox(
             width: 132,
             child: ElevatedButton(
-              onPressed: () {
-                //print('Favoriter');
-                iMat.selectFavorites();
-              },
-              child: Text('Favoriter'),
+              onPressed: () => iMat.selectFavorites(),
+              child: const Text('Favoriter'),
             ),
           ),
           SizedBox(height: AppTheme.paddingSmall),
@@ -102,31 +128,25 @@ class MainView extends StatelessWidget {
                   products[110],
                 ]);
               },
-              child: Text('Urval'),
+              child: const Text('Urval'),
             ),
           ),
           SizedBox(height: AppTheme.paddingSmall),
           SizedBox(
             width: 132,
             child: ElevatedButton(
-              onPressed: () {
-                //print('Frukt');
-                iMat.selectSelection(
-                  iMat.findProductsByCategory(ProductCategory.CABBAGE),
-                );
-              },
-              child: Text('Grönsaker'),
+              onPressed: () => iMat.selectSelection(
+                iMat.findProductsByCategory(ProductCategory.CABBAGE),
+              ),
+              child: const Text('Grönsaker'),
             ),
           ),
           SizedBox(height: AppTheme.paddingSmall),
           SizedBox(
             width: 132,
             child: ElevatedButton(
-              onPressed: () {
-                //print('Söktest');
-                iMat.selectSelection(iMat.findProducts('mj'));
-              },
-              child: Text('Söktest'),
+              onPressed: () => iMat.selectSelection(iMat.findProducts('mj')),
+              child: const Text('Söktest'),
             ),
           ),
         ],
@@ -138,21 +158,19 @@ class MainView extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        ElevatedButton(onPressed: () {}, child: Text('iMat')),
+        ElevatedButton(
+          onPressed: () {}, 
+          child: const Text('iMat')
+        ),
         Row(
           children: [
             ElevatedButton(
-              onPressed: () {
-                dbugPrint('Historik-knapp');
-                _showHistory(context);
-              },
-              child: Text('Köphistorik'),
+              onPressed: () => _showHistory(context),
+              child: const Text('Köphistorik'),
             ),
             ElevatedButton(
-              onPressed: () {
-                _showAccount(context);
-              },
-              child: Text('Användare'),
+              onPressed: () => _showAccount(context),
+              child: const Text('Användare'),
             ),
           ],
         ),
@@ -161,32 +179,29 @@ class MainView extends StatelessWidget {
   }
 
   Widget _centerStage(BuildContext context, List<Product> products) {
-  return GridView.builder(
-    padding: const EdgeInsets.all(4),  // Reduced padding
-    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-      crossAxisCount: 5,  // Five columns
-      crossAxisSpacing: 4,  // Reduced spacing
-      mainAxisSpacing: 4,  // Reduced spacing
-      childAspectRatio: 0.6,  // More rectangular shape to fit content
-    ),
-    itemCount: products.length,
-    itemBuilder: (BuildContext context, int index) {
-      return ProductTile(
-        products[index],
-        compact: true,  // Assuming ProductTile accepts this parameter
-      );
-    },
-  );
-}
+    return GridView.builder(
+      padding: const EdgeInsets.all(8),
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 3,
+        crossAxisSpacing: 8,
+        mainAxisSpacing: 8,
+        childAspectRatio: 0.85,
+      ),
+      itemCount: products.length,
+      itemBuilder: (BuildContext context, int index) {
+        return ProductTile(products[index], compact: true);
+      },
+    );
+  }
 
-  void _showAccount(context) {
+  void _showAccount(BuildContext context) {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => AccountView()),
     );
   }
 
-  void _showHistory(context) {
+  void _showHistory(BuildContext context) {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => HistoryView()),
