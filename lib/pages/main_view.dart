@@ -161,15 +161,23 @@ class MainView extends StatelessWidget {
   }
 
   Widget _centerStage(BuildContext context, List<Product> products) {
-    // ListView.builder has the advantage that tiles
-    // are built as needed.
-    return ListView.builder(
-      itemCount: products.length,
-      itemBuilder: (BuildContext context, int index) {
-        return ProductTile(products[index]);
-      },
-    );
-  }
+  return GridView.builder(
+    padding: const EdgeInsets.all(4),  // Reduced padding
+    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+      crossAxisCount: 5,  // Five columns
+      crossAxisSpacing: 4,  // Reduced spacing
+      mainAxisSpacing: 4,  // Reduced spacing
+      childAspectRatio: 0.6,  // More rectangular shape to fit content
+    ),
+    itemCount: products.length,
+    itemBuilder: (BuildContext context, int index) {
+      return ProductTile(
+        products[index],
+        compact: true,  // Assuming ProductTile accepts this parameter
+      );
+    },
+  );
+}
 
   void _showAccount(context) {
     Navigator.push(

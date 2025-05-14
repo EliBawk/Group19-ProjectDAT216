@@ -1,68 +1,159 @@
 import 'package:api_test/model/imat/product.dart';
-import 'package:api_test/model/imat/product_detail.dart';
-import 'package:api_test/model/imat/shopping_item.dart';
-import 'package:api_test/model/imat_data_handler.dart';
-import 'package:api_test/widgets/buy_button.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class ProductTile extends StatelessWidget {
-  const ProductTile(this.product, {super.key});
-
   final Product product;
+  final bool compact;
+  
+  const ProductTile(
+    this.product, {
+    this.compact = false,
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    var iMat = Provider.of<ImatDataHandler>(context, listen: false);
+    return compact ? _buildCompactTile(context) : _buildNormalTile(context);
+  }
 
+  String _getImagePath(String? imageName) {
+    // Adjust this path to match your actual image library structure
+    // Example: 'assets/products/${imageName}.png'
+    return 'assets/images/${imageName ?? 'placeholder'}.png';
+  }
+
+  Widget _buildCompactTile(BuildContext context) {
     return Card(
-      child: ListTile(
-        leading: iMat.getImage(product),
-        title: Text(product.name),
-        subtitle: Text(
-          '${product.price} ${product.unit} ${_brand(product, context)}',
-        ),
-        trailing: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            _favoriteButton(product, context),
-            SizedBox(width: 8),
-            BuyButton(
-              onPressed: () {
-                iMat.shoppingCartAdd(ShoppingItem(product));
-              },
-            ),
-          ],
+      elevation: 2,
+      margin: EdgeInsets.zero,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(4),
+      ),
+      child: InkWell(
+        borderRadius: BorderRadius.circular(4),
+        onTap: () {
+          // Add your onTap functionality here
+        },
+        child: Padding(
+          padding: const EdgeInsets.all(4),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Product Image from local assets
+              AspectRatio(
+                aspectRatio: 1,
+                child: Image.asset(
+                  _getImagePath(product.imageName),
+                  fit: BoxFit.cover,
+                  errorBuilder: (context, error, stackTrace) => Image.asset(
+                    'assets/images/placeholder.png',
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 4),
+              
+              // Product Name
+              Text(
+                product.name ?? 'No Name',
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                style: const TextStyle(
+                  fontSize: 11,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              const Spacer(),
+              
+              // Price and Add Button
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    '${product.price?.toStringAsFixed(2) ?? '0.00'} SEK',
+                    style: const TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.add_shopping_cart, size: 16),
+                    padding: EdgeInsets.zero,
+                    constraints: const BoxConstraints(),
+                    onPressed: () {
+                      // Add to cart functionality
+                    },
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
 
-  String _brand(Product product, context) {
-    var iMat = Provider.of<ImatDataHandler>(context, listen: false);
-
-    ProductDetail? detail = iMat.getDetail(product);
-
-    if (detail != null) {
-      return detail.brand;
-    }
-    return '';
-  }
-
-  Widget _favoriteButton(Product p, context) {
-    var iMat = Provider.of<ImatDataHandler>(context, listen: false);
-    var isFavorite = iMat.isFavorite(product);
-
-    var icon =
-        isFavorite
-            ? Icon(Icons.star, color: Colors.orange)
-            : Icon(Icons.star_border, color: Colors.orange);
-
-    return IconButton(
-      onPressed: () {
-        iMat.toggleFavorite(product);
-      },
-      icon: icon,
+  Widget _buildNormalTile(BuildContext context) {
+    return Card(
+      elevation: 2,
+      child: InkWell(
+        onTap: () {
+          // Add your onTap functionality here
+        },
+        child: Padding(
+          padding: const EdgeInsets.all(12),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Product Image from local assets
+              AspectRatio(
+                aspectRatio: 1,
+                child: Image.asset(
+                  _getImagePath(product.imageName),
+                  fit: BoxFit.cover,
+                  errorBuilder: (context, error, stackTrace) => Image.asset(
+                    'assets/images/placeholder.png',
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 8),
+              
+              // Product Name
+              Text(
+                product.name ?? 'No Name',
+                style: Theme.of(context).textTheme.titleMedium,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              ),
+              const SizedBox(height: 4),
+              
+              // Product ID or other info
+              
+              const Spacer(),
+              
+              // Price and Add Button
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    '${product.price?.toStringAsFixed(2) ?? '0.00'} SEK',
+                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.add_shopping_cart),
+                    onPressed: () {
+                      // Add to cart functionality
+                    },
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
