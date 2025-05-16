@@ -64,13 +64,15 @@ class MainView extends StatelessWidget {
 
   Container _leftPanel(ImatDataHandler iMat) {
     return Container(
-      width: 150,
+      width: 200,
       color: const Color.fromARGB(255, 255, 0, 0),
-      child: Column(
+      child: SingleChildScrollView(
+        child: 
+      Column(
         children: [
           SizedBox(height: AppTheme.paddingSmall),
           SizedBox(
-            width: 132,
+            width: 150,
             child: ElevatedButton(
               onPressed: () {
                 iMat.selectAllProducts();
@@ -80,7 +82,7 @@ class MainView extends StatelessWidget {
           ),
           SizedBox(height: AppTheme.paddingSmall),
           SizedBox(
-            width: 132,
+            width: 150,
             child: ElevatedButton(
               onPressed: () {
                 //print('Favoriter');
@@ -91,7 +93,7 @@ class MainView extends StatelessWidget {
           ),
           SizedBox(height: AppTheme.paddingSmall),
           SizedBox(
-            width: 132,
+            width: 150,
             child: ElevatedButton(
               onPressed: () {
                 var products = iMat.products;
@@ -108,7 +110,7 @@ class MainView extends StatelessWidget {
           ),
           SizedBox(height: AppTheme.paddingSmall),
           SizedBox(
-            width: 132,
+            width: 150,
             child: ElevatedButton(
               onPressed: () {
                 //print('Frukt');
@@ -118,10 +120,159 @@ class MainView extends StatelessWidget {
               },
               child: Text('Grönsaker'),
             ),
+          ),SizedBox(height: AppTheme.paddingSmall),
+          SizedBox(
+            width: 150,
+            child: ElevatedButton(
+              onPressed: () {
+                //print('Frukt');
+                iMat.selectSelection(
+                  iMat.findProductsByCategory(ProductCategory.POD),
+                );
+              },
+              child: Text('Balgväxter'),
+            ),
+          ),SizedBox(height: AppTheme.paddingSmall),
+          SizedBox(
+            width: 150,
+            child: ElevatedButton(
+              onPressed: () {
+                //print('Frukt');
+                iMat.selectSelection(
+                  iMat.findProductsByCategory(ProductCategory.BREAD),
+                );
+              },
+              child: Text('Bröd'),
+            ),
+          ),SizedBox(height: AppTheme.paddingSmall),
+          SizedBox(
+            width: 150,
+            child: ElevatedButton(
+              onPressed: () {
+                //print('Frukt');
+                iMat.selectSelection(
+                  iMat.findProductsByCategory(ProductCategory.BERRY),
+                );
+              },
+              child: Text('Bär'),
+            ),
+          ),SizedBox(height: AppTheme.paddingSmall),
+          SizedBox(
+            width: 150,
+            child: ElevatedButton(
+              onPressed: () {
+                //print('Frukt');
+                iMat.selectSelection(
+                  iMat.findProductsByCategory(ProductCategory.CITRUS_FRUIT),
+                );
+              },
+              child: Text('Citrusfrukter'),
+            ),
+          ),SizedBox(height: AppTheme.paddingSmall),
+          SizedBox(
+            width: 150,
+            child: ElevatedButton(
+              onPressed: () {
+                //print('Frukt');
+                iMat.selectSelection(
+                  iMat.findProductsByCategory(ProductCategory.HOT_DRINKS),
+                );
+              },
+              child: Text('Kaffe/te'),
+            ),
+          ),SizedBox(height: AppTheme.paddingSmall),
+          SizedBox(
+            width: 150,
+            child: ElevatedButton(
+              onPressed: () {
+                //print('Frukt');
+                iMat.selectSelection(
+                  iMat.findProductsByCategory(ProductCategory.COLD_DRINKS),
+                );
+              },
+              child: Text('Kalla drycker'),
+            ),
+          ),SizedBox(height: AppTheme.paddingSmall),
+          SizedBox(
+            width: 150,
+            child: ElevatedButton(
+              onPressed: () {
+                //print('Frukt');
+                iMat.selectSelection(
+                  iMat.findProductsByCategory(ProductCategory.EXOTIC_FRUIT),
+                );
+              },
+              child: Text('Exotiska frukter'),
+            ),
           ),
           SizedBox(height: AppTheme.paddingSmall),
           SizedBox(
-            width: 132,
+            width: 150,
+            child: ElevatedButton(
+              onPressed: () {
+                //print('Frukt');
+                iMat.selectSelection(
+                  iMat.findProductsByCategory(ProductCategory.FISH),
+                );
+              },
+              child: Text('Fisk'),
+            ),
+          ),
+          SizedBox(height: AppTheme.paddingSmall),
+          SizedBox(
+            width: 150,
+            child: ElevatedButton(
+              onPressed: () {
+                //print('Frukt');
+                iMat.selectSelection(
+                  iMat.findProductsByCategory(ProductCategory.VEGETABLE_FRUIT),
+                );
+              },
+              child: Text('Fruktgrönsaker'),
+            ),
+          ),
+          SizedBox(height: AppTheme.paddingSmall),
+          SizedBox(
+            width: 150,
+            child: ElevatedButton(
+              onPressed: () {
+                //print('Frukt');
+                iMat.selectSelection(
+                  iMat.findProductsByCategory(ProductCategory.MEAT),
+                );
+              },
+              child: Text('Kött'),
+            ),
+          ),
+          SizedBox(height: AppTheme.paddingSmall),
+          SizedBox(
+            width: 150,
+            child: ElevatedButton(
+              onPressed: () {
+                //print('Frukt');
+                iMat.selectSelection(
+                  iMat.findProductsByCategory(ProductCategory.DAIRIES),
+                );
+              },
+              child: Text('Mejeriprodukter'),
+            ),
+          ),
+          SizedBox(height: AppTheme.paddingSmall),
+          SizedBox(
+            width: 150,
+            child: ElevatedButton(
+              onPressed: () {
+                //print('Frukt');
+                iMat.selectSelection(
+                  iMat.findProductsByCategory(ProductCategory.MELONS),
+                );
+              },
+              child: Text('Meloner'),
+            ),
+          ),
+          SizedBox(height: AppTheme.paddingSmall),
+          SizedBox(
+            width: 150,
             child: ElevatedButton(
               onPressed: () {
                 //print('Söktest');
@@ -130,7 +281,99 @@ class MainView extends StatelessWidget {
               child: Text('Söktest'),
             ),
           ),
+          SizedBox(height: AppTheme.paddingSmall),
+          SizedBox(
+            width: 150,
+            child: ElevatedButton(
+              onPressed: () {
+                //print('Frukt');
+                iMat.selectSelection(
+                  iMat.findProductsByCategory(ProductCategory.FLOUR_SUGAR_SALT),
+                );
+              },
+              child: Text('Mjöl/socker/salt'),
+            ),
+          ),
+          SizedBox(height: AppTheme.paddingSmall),
+          SizedBox(
+            width: 150,
+            child: ElevatedButton(
+              onPressed: () {
+                //print('Frukt');
+                iMat.selectSelection(
+                  iMat.findProductsByCategory(ProductCategory.NUTS_AND_SEEDS),
+                );
+              },
+              child: Text('Nötter och frön'),
+            ),
+          ),
+          SizedBox(height: AppTheme.paddingSmall),
+          SizedBox(
+            width: 150,
+            child: ElevatedButton(
+              onPressed: () {
+                //print('Frukt');
+                iMat.selectSelection(
+                  iMat.findProductsByCategory(ProductCategory.PASTA),
+                );
+              },
+              child: Text('Pasta'),
+            ),
+          ),
+          SizedBox(height: AppTheme.paddingSmall),
+          SizedBox(
+            width: 150,
+            child: ElevatedButton(
+              onPressed: () {
+                //print('Frukt');
+                iMat.selectSelection(
+                  iMat.findProductsByCategory(ProductCategory.POTATO_RICE),
+                );
+              },
+              child: Text('Potatis/ris'),
+            ),
+          ),
+          SizedBox(height: AppTheme.paddingSmall),
+          SizedBox(
+            width: 150,
+            child: ElevatedButton(
+              onPressed: () {
+                //print('Frukt');
+                iMat.selectSelection(
+                  iMat.findProductsByCategory(ProductCategory.ROOT_VEGETABLE),
+                );
+              },
+              child: Text('Meloner'),
+            ),
+          ),
+          SizedBox(height: AppTheme.paddingSmall),
+          SizedBox(
+            width: 150,
+            child: ElevatedButton(
+              onPressed: () {
+                //print('Frukt');
+                iMat.selectSelection(
+                  iMat.findProductsByCategory(ProductCategory.MELONS),
+                );
+              },
+              child: Text('Meloner'),
+            ),
+          ),
+          SizedBox(height: AppTheme.paddingSmall),
+          SizedBox(
+            width: 150,
+            child: ElevatedButton(
+              onPressed: () {
+                //print('Frukt');
+                iMat.selectSelection(
+                  iMat.findProductsByCategory(ProductCategory.MELONS),
+                );
+              },
+              child: Text('Meloner'),
+            ),
+          ),
         ],
+      ),
       ),
     );
   }

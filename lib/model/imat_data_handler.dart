@@ -391,6 +391,8 @@ import 'package:http/http.dart' as http;
   final int maxConcurrentRequests = 5;
   int _currentRequests = 0;
 
+  get totalPrice => null;
+
   //ImageCacheProvider({this.maxConcurrentRequests = 5});
 
   /// Students can use this to get raw image bytes
