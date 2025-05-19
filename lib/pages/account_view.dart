@@ -36,29 +36,65 @@ class AccountView extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
+        // Översta gröna headern med iMat, centrerad sökfält, och knapparna bredvid varandra längst höger
         Container(
           color: const Color(0xFF91C184),
           padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
-          child: const Center(
-            child: Text(
-              'iMat',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-        ),
-        Container(
-          color: const Color(0xFFE4FEDD),
-          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
           child: Row(
             children: [
-              // "kategorier"-knapp med skugga
+              // "iMat" längst åt vänster
+              const Expanded(
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    'iMat',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ),
+
+              // Centrerad sökfält - med spacer på båda sidor för centering
+              Expanded(
+                flex: 2,
+                child: Center(
+                  child: SizedBox(
+                    width: 267, // 1/3 större än tidigare 200
+                    height: 36,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(18),
+                        boxShadow: const [
+                          BoxShadow(
+                            color: Colors.black26,
+                            blurRadius: 6,
+                            offset: Offset(0, 3),
+                          ),
+                        ],
+                      ),
+                      child: TextField(
+                        decoration: const InputDecoration(
+                          contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 0),
+                          hintText: 'Sök...',
+                          border: InputBorder.none,
+                          prefixIcon: Icon(Icons.search, color: Color(0xFF3D5430)),
+                        ),
+                        style: const TextStyle(color: Colors.black87),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+
+              // Knapparna längst höger i rad
               Container(
+                margin: const EdgeInsets.only(right: 8),
                 decoration: BoxDecoration(
-                  boxShadow: [
+                  boxShadow: const [
                     BoxShadow(
                       color: Colors.black26,
                       blurRadius: 6,
@@ -69,7 +105,85 @@ class AccountView extends StatelessWidget {
                 ),
                 child: TextButton(
                   onPressed: () {
-                    // TODO: Hantera knapptryck kategorier
+                    // TODO: Hantera knapp konto
+                  },
+                  style: TextButton.styleFrom(
+                    backgroundColor: const Color(0xFF3D5430),
+                    foregroundColor: Colors.white,
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                  ),
+                  child: const Text(
+                    'konto',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ),
+
+              Container(
+                margin: const EdgeInsets.only(right: 8),
+                decoration: BoxDecoration(
+                  boxShadow: const [
+                    BoxShadow(
+                      color: Colors.black26,
+                      blurRadius: 6,
+                      offset: Offset(0, 3),
+                    ),
+                  ],
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                child: TextButton(
+                  onPressed: () {
+                    // TODO: Hantera knapp varukorg
+                  },
+                  style: TextButton.styleFrom(
+                    backgroundColor: const Color(0xFF3D5430),
+                    foregroundColor: Colors.white,
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                  ),
+                  child: const Text(
+                    'varukorg',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+
+        // Understa ljusgröna headern med "kategorier" och "kundservice"
+        Container(
+          color: const Color(0xFFE4FEDD),
+          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Vänster knapp "kategorier"
+              Container(
+                decoration: BoxDecoration(
+                  boxShadow: const [
+                    BoxShadow(
+                      color: Colors.black26,
+                      blurRadius: 6,
+                      offset: Offset(0, 3),
+                    ),
+                  ],
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                child: TextButton(
+                  onPressed: () {
+                    // TODO: Hantera knapp kategorier
                   },
                   style: TextButton.styleFrom(
                     backgroundColor: Colors.white,
@@ -92,19 +206,22 @@ class AccountView extends StatelessWidget {
               const Spacer(),
 
               // Text i mitten
-              const Text(
-                'Din lilla ljusgröna header',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
+              const Padding(
+                padding: EdgeInsets.only(top: 8.0),
+                child: Text(
+                  'Din lilla ljusgröna header',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
 
               const Spacer(),
 
-              // "kundservice"-knapp med skugga längst till höger
+              // Höger knapp "kundservice"
               Container(
                 decoration: BoxDecoration(
-                  boxShadow: [
+                  boxShadow: const [
                     BoxShadow(
                       color: Colors.black26,
                       blurRadius: 6,
@@ -115,7 +232,7 @@ class AccountView extends StatelessWidget {
                 ),
                 child: TextButton(
                   onPressed: () {
-                    // TODO: Hantera knapptryck kundservice
+                    // TODO: Hantera knapp kundservice
                   },
                   style: TextButton.styleFrom(
                     backgroundColor: Colors.white,
@@ -155,10 +272,9 @@ class AccountView extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Row(
         children: [
-          // Skugga + knapp "fortsätt handla"
           Container(
             decoration: BoxDecoration(
-              boxShadow: [
+              boxShadow: const [
                 BoxShadow(
                   color: Colors.black26,
                   blurRadius: 6,
@@ -185,9 +301,7 @@ class AccountView extends StatelessWidget {
               ),
             ),
           ),
-
           const SizedBox(width: 16),
-
           const Expanded(
             child: Text(
               'Här kan du lägga valfritt innehåll',
