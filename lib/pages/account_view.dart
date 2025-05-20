@@ -28,10 +28,12 @@ class AccountView extends StatelessWidget {
 
                       // Två ljusgröna boxar bredvid varandra
                       Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          // Box 1: Leveransuppgifter
                           Expanded(
                             child: Container(
-                              height: 120,
+                              height: 450,
                               padding: const EdgeInsets.all(16),
                               decoration: BoxDecoration(
                                 color: const Color(0xFFE4FEDD),
@@ -44,22 +46,29 @@ class AccountView extends StatelessWidget {
                                   ),
                                 ],
                               ),
-                              child: const Align(
-                                alignment: Alignment.topLeft,
-                                child: Text(
-                                  'Leveransuppgifter',
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 18,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: const [
+                                  Text(
+                                    'Leveransuppgifter',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18,
+                                    ),
                                   ),
-                                ),
+                                  SizedBox(height: 12),
+                                  Expanded(child: CustomerDetails()),
+                                ],
                               ),
                             ),
                           ),
-                          const SizedBox(width: 16),
+
+                          SizedBox(width: 16), // Vit springa mellan boxarna
+
+                          // Box 2: Betalningsuppgifter
                           Expanded(
                             child: Container(
-                              height: 120,
+                              height: 450,
                               padding: const EdgeInsets.all(16),
                               decoration: BoxDecoration(
                                 color: const Color(0xFFE4FEDD),
@@ -72,23 +81,24 @@ class AccountView extends StatelessWidget {
                                   ),
                                 ],
                               ),
-                              child: const Align(
-                                alignment: Alignment.topLeft,
-                                child: Text(
-                                  'Betalningsuppgifter',
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 18,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: const [
+                                  Text(
+                                    'Betalningsuppgifter',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18,
+                                    ),
                                   ),
-                                ),
+                                  SizedBox(height: 12),
+                                  Expanded(child: CardDetails()),
+                                ],
                               ),
                             ),
                           ),
                         ],
                       ),
-
-                      const SizedBox(height: AppTheme.paddingMedium),
-                      _customerDetails(),
                     ],
                   ),
                 ),
@@ -104,130 +114,32 @@ class AccountView extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
+        // Mörkgrön header med iMat, sökfält och knappar
         Container(
           color: const Color(0xFF91C184),
           padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
-          child: Row(
+          child: Stack(
             children: [
-              const Text(
-                'iMat',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
+              const Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  'iMat',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
-              const SizedBox(width: 16),
-              Expanded(
+              Align(
+                alignment: Alignment.center,
                 child: SizedBox(
+                  width: MediaQueryData.fromWindow(WidgetsBinding.instance.window).size.width / 3,
                   height: 36,
-                  child: LayoutBuilder(builder: (context, constraints) {
-                    return Align(
-                      alignment: Alignment.center,
-                      child: Container(
-                        width: constraints.maxWidth / 3,
-                        height: 36,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(18),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black26,
-                              blurRadius: 6,
-                              offset: Offset(0, 3),
-                            ),
-                          ],
-                        ),
-                        child: TextField(
-                          decoration: InputDecoration(
-                            contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 0),
-                            hintText: 'Sök...',
-                            border: InputBorder.none,
-                            prefixIcon: const Icon(Icons.search, color: Color(0xFF3D5430)),
-                          ),
-                          style: const TextStyle(color: Colors.black87),
-                        ),
-                      ),
-                    );
-                  }),
-                ),
-              ),
-              const SizedBox(width: 16),
-              Container(
-                margin: const EdgeInsets.only(right: 8),
-                decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black26,
-                      blurRadius: 6,
-                      offset: Offset(0, 3),
-                    ),
-                  ],
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                child: TextButton(
-                  onPressed: () {},
-                  style: TextButton.styleFrom(
-                    backgroundColor: const Color(0xFF3D5430),
-                    foregroundColor: Colors.white,
-                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                  ),
-                  child: const Text(
-                    'konto',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ),
-              Container(
-                margin: const EdgeInsets.only(right: 8),
-                decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black26,
-                      blurRadius: 6,
-                      offset: Offset(0, 3),
-                    ),
-                  ],
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                child: TextButton(
-                  onPressed: () {},
-                  style: TextButton.styleFrom(
-                    backgroundColor: const Color(0xFF3D5430),
-                    foregroundColor: Colors.white,
-                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                  ),
-                  child: const Text(
-                    'varukorg',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-        Container(
-          color: const Color(0xFFE4FEDD),
-          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const SizedBox(height: 4),
-                  Container(
+                  child: Container(
                     decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(18),
                       boxShadow: [
                         BoxShadow(
                           color: Colors.black26,
@@ -235,36 +147,127 @@ class AccountView extends StatelessWidget {
                           offset: Offset(0, 3),
                         ),
                       ],
-                      borderRadius: BorderRadius.circular(16),
                     ),
-                    child: TextButton(
-                      onPressed: () {},
-                      style: TextButton.styleFrom(
-                        backgroundColor: Colors.white,
-                        foregroundColor: Colors.black,
-                        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16),
-                        ),
+                    child: const TextField(
+                      decoration: InputDecoration(
+                        contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 0),
+                        hintText: 'Sök...',
+                        border: InputBorder.none,
+                        prefixIcon: Icon(Icons.search, color: Color(0xFF3D5430)),
                       ),
-                      child: const Text(
-                        'kategorier',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
+                      style: TextStyle(color: Colors.black87),
                     ),
                   ),
-                ],
+                ),
+              ),
+              Align(
+                alignment: Alignment.centerRight,
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Container(
+                      margin: const EdgeInsets.only(right: 8),
+                      decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black26,
+                            blurRadius: 6,
+                            offset: Offset(0, 3),
+                          ),
+                        ],
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                      child: TextButton(
+                        onPressed: () {},
+                        style: TextButton.styleFrom(
+                          backgroundColor: const Color(0xFF3D5430),
+                          foregroundColor: Colors.white,
+                          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                        ),
+                        child: const Text(
+                          'konto',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      margin: const EdgeInsets.only(right: 8),
+                      decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black26,
+                            blurRadius: 6,
+                            offset: Offset(0, 3),
+                          ),
+                        ],
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                      child: TextButton(
+                        onPressed: () {},
+                        style: TextButton.styleFrom(
+                          backgroundColor: const Color(0xFF3D5430),
+                          foregroundColor: Colors.white,
+                          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                        ),
+                        child: const Text(
+                          'varukorg',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+
+        // Ljusgrön rad under header
+        Container(
+          color: const Color(0xFFE4FEDD),
+          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black26,
+                      blurRadius: 6,
+                      offset: Offset(0, 3),
+                    ),
+                  ],
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                child: TextButton(
+                  onPressed: () {},
+                  style: TextButton.styleFrom(
+                    backgroundColor: Colors.white,
+                    foregroundColor: Colors.black,
+                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                  ),
+                  child: const Text(
+                    'kategorier',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ),
               ),
               const Spacer(),
               const Padding(
                 padding: EdgeInsets.only(top: 8.0),
                 child: Text(
-                  'Din lilla ljusgröna header',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                  ),
+                  'Konto',
+                  style: TextStyle(fontWeight: FontWeight.bold),
                 ),
               ),
               const Spacer(),
@@ -291,9 +294,7 @@ class AccountView extends StatelessWidget {
                   ),
                   child: const Text(
                     'kundservice',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ),
               ),
@@ -357,27 +358,6 @@ class AccountView extends StatelessWidget {
           ),
         ],
       ),
-    );
-  }
-
-  Widget _customerDetails() {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Expanded(
-          child: Container(
-            color: const Color.fromARGB(255, 154, 172, 134),
-            child: const CustomerDetails(),
-          ),
-        ),
-        const SizedBox(width: 16),
-        Expanded(
-          child: Container(
-            color: const Color.fromARGB(255, 154, 172, 134),
-            child: const CardDetails(),
-          ),
-        ),
-      ],
     );
   }
 }
