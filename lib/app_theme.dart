@@ -11,4 +11,8 @@ class AppTheme {
   static ColorScheme colorScheme = ColorScheme.fromSeed(
     seedColor: Colors.green,
   );
+  static const Color darkGreen = Color(0xFF91C184);   // Mörkgrön
+  static const Color lightGreen = Color(0xFFE4FEDD);  // Ljusgrön
+  static const Color primaryColor = Color(0xFF3D5430); // Används till "Fortsätt handla"-knappen
 }
+

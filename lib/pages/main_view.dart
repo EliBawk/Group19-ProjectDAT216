@@ -5,9 +5,11 @@ import 'package:api_test/model/imat_data_handler.dart';
 import 'package:api_test/pages/account_view.dart';
 import 'package:api_test/pages/history_view.dart';
 import 'package:api_test/widgets/cart_view.dart';
+import 'package:api_test/widgets/custume_header.dart';
 import 'package:api_test/widgets/product_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 
 class MainView extends StatelessWidget {
   const MainView({super.key});
@@ -21,7 +23,27 @@ class MainView extends StatelessWidget {
       body: Column(
         children: [
           SizedBox(height: AppTheme.paddingLarge),
-          _header(context),
+          CustomHeader(
+  onAccountPressed: () {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const AccountView()),
+    );
+  },
+  onCartPressed: () {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const CartView()),
+    );
+  },
+
+onCategoriesPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const MainView()), // Exempel: kategorier = startsidan
+              );
+            }, ),
+
           SizedBox(height: AppTheme.paddingMedium),
           Expanded(
             child: Row(
@@ -378,31 +400,6 @@ class MainView extends StatelessWidget {
     );
   }
 
-  Row _header(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        ElevatedButton(onPressed: () {}, child: Text('iMat')),
-        Row(
-          children: [
-            ElevatedButton(
-              onPressed: () {
-                dbugPrint('Historik-knapp');
-                _showHistory(context);
-              },
-              child: Text('Köphistorik'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                _showAccount(context);
-              },
-              child: Text('Användare'),
-            ),
-          ],
-        ),
-      ],
-    );
-  }
 
   Widget _centerStage(BuildContext context, List<Product> products) {
   return GridView.builder(
