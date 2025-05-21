@@ -1,10 +1,12 @@
-import 'package:flutter/material.dart';
-import 'package:api_test/widgets/custume_header.dart'; // din header
+// product_view.dart
 
-class ProductsView extends StatelessWidget {
+import 'package:flutter/material.dart';
+import 'package:api_test/widgets/custume_header.dart';
+
+class ProductView extends StatelessWidget {
   final String category;
 
-  const ProductsView({Key? key, required this.category}) : super(key: key);
+  const ProductView({super.key, required this.category});
 
   @override
   Widget build(BuildContext context) {
@@ -14,26 +16,31 @@ class ProductsView extends StatelessWidget {
           children: [
             CustomHeader(
               onAccountPressed: () {
-                // navigering till account view
+                Navigator.pushNamed(context, '/account');
               },
               onCartPressed: () {
-                // navigering till cart view
+                Navigator.pushNamed(context, '/cart');
               },
               onCategoriesPressed: () {
-                Navigator.pop(context); // går tillbaka till MainView
+                Navigator.pop(context);
               },
             ),
             Padding(
-              padding: const EdgeInsets.all(16),
+              padding: const EdgeInsets.all(16.0),
               child: Text(
-                'Produkter i kategori: $category',
-                style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                'Produkter i kategorin: $category',
+                style: const TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
-            // Här lägger du listan med produkter, t.ex. GridView eller ListView
             Expanded(
               child: Center(
-                child: Text('Lista över produkter kommer här'),
+                child: Text(
+                  'Här kommer produktkort för "$category"',
+                  style: const TextStyle(fontSize: 18),
+                ),
               ),
             ),
           ],
