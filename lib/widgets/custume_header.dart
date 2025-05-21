@@ -53,6 +53,7 @@ class CustomHeader extends StatelessWidget {
                         ],
                       ),
                       child: const TextField(
+                        
                         decoration: InputDecoration(
                           contentPadding:
                               EdgeInsets.symmetric(vertical: 7),
@@ -61,6 +62,7 @@ class CustomHeader extends StatelessWidget {
                           prefixIcon: Icon(Icons.search, color: Color(0xFF3D5430)),
                         ),
                         style: TextStyle(color: Colors.black87),
+                        
                       ),
                     ),
                   ),
