@@ -26,9 +26,9 @@ class ProductView extends StatelessWidget {
               },
             ),
             Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 20),
               child: Text(
-                'Produkter i kategorin: $category',
+                '$category',
                 style: const TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
