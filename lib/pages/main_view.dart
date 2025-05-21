@@ -8,6 +8,7 @@ import 'package:api_test/widgets/cart_view.dart';
 import 'package:api_test/widgets/custume_header.dart';
 import 'package:api_test/widgets/product_tile.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 
@@ -22,7 +23,6 @@ class MainView extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          SizedBox(height: AppTheme.paddingLarge),
           CustomHeader(
   onAccountPressed: () {
     Navigator.push(
@@ -51,12 +51,12 @@ onCategoriesPressed: () {
               children: [
                 _leftPanel(iMat),
                 SizedBox(
-                  width: 800,
+                  width: 1017,
                   //height: 400,
                   child: _centerStage(context, products),
                 ),
                 SizedBox(
-                  width: 450,
+                  width: 250,
                   //color: Colors.blueGrey,
                   child: _shoppingCart(iMat),
                 ),
@@ -71,8 +71,8 @@ onCategoriesPressed: () {
   Widget _shoppingCart(ImatDataHandler iMat) {
     return Column(
       children: [
-        Text('Kundvagn'),
-        SizedBox(height: 600, child: CartView()),
+        Text('Kundvagn',style: GoogleFonts.reemKufi(),),
+        SizedBox(height: 500, child: CartView()),
         FilledButton(
           
           onPressed: () {
@@ -87,35 +87,35 @@ onCategoriesPressed: () {
   Container _leftPanel(ImatDataHandler iMat) {
     return Container(
       width: 200,
-      color: const Color.fromARGB(255, 255, 0, 0),
+      color: const Color(0xFF91C184),
       child: SingleChildScrollView(
         child: 
       Column(
         children: [
           SizedBox(height: AppTheme.paddingSmall),
           SizedBox(
-            width: 150,
+            width: 160,
             child: ElevatedButton(
               onPressed: () {
                 iMat.selectAllProducts();
               },
-              child: Text('Visa allt'),
+              child: Text('Visa allt',style: GoogleFonts.reemKufi(),),
             ),
           ),
           SizedBox(height: AppTheme.paddingSmall),
           SizedBox(
-            width: 150,
+            width: 160,
             child: ElevatedButton(
               onPressed: () {
                 //print('Favoriter');
                 iMat.selectFavorites();
               },
-              child: Text('Favoriter'),
+              child: Text('Favoriter',style: GoogleFonts.reemKufi(),),
             ),
           ),
           SizedBox(height: AppTheme.paddingSmall),
           SizedBox(
-            width: 150,
+            width: 160,
             child: ElevatedButton(
               onPressed: () {
                 var products = iMat.products;
@@ -127,12 +127,12 @@ onCategoriesPressed: () {
                   products[110],
                 ]);
               },
-              child: Text('Urval'),
+              child: Text('Urval',style: GoogleFonts.reemKufi(),),
             ),
           ),
           SizedBox(height: AppTheme.paddingSmall),
           SizedBox(
-            width: 150,
+            width: 160,
             child: ElevatedButton(
               onPressed: () {
                 //print('Frukt');
@@ -140,11 +140,13 @@ onCategoriesPressed: () {
                   iMat.findProductsByCategory(ProductCategory.CABBAGE),
                 );
               },
-              child: Text('Grönsaker'),
+              child: Text(
+                'Grönsaker',
+                style: GoogleFonts.reemKufi(),),
             ),
           ),SizedBox(height: AppTheme.paddingSmall),
           SizedBox(
-            width: 150,
+            width: 160,
             child: ElevatedButton(
               onPressed: () {
                 //print('Frukt');
@@ -152,11 +154,11 @@ onCategoriesPressed: () {
                   iMat.findProductsByCategory(ProductCategory.POD),
                 );
               },
-              child: Text('Balgväxter'),
+              child: Text('Balgväxter',style: GoogleFonts.reemKufi(),),
             ),
           ),SizedBox(height: AppTheme.paddingSmall),
           SizedBox(
-            width: 150,
+            width: 160,
             child: ElevatedButton(
               onPressed: () {
                 //print('Frukt');
@@ -164,11 +166,11 @@ onCategoriesPressed: () {
                   iMat.findProductsByCategory(ProductCategory.BREAD),
                 );
               },
-              child: Text('Bröd'),
+              child: Text('Bröd',style: GoogleFonts.reemKufi(),),
             ),
           ),SizedBox(height: AppTheme.paddingSmall),
           SizedBox(
-            width: 150,
+            width: 160,
             child: ElevatedButton(
               onPressed: () {
                 //print('Frukt');
@@ -176,11 +178,11 @@ onCategoriesPressed: () {
                   iMat.findProductsByCategory(ProductCategory.BERRY),
                 );
               },
-              child: Text('Bär'),
+              child: Text('Bär',style: GoogleFonts.reemKufi(),),
             ),
           ),SizedBox(height: AppTheme.paddingSmall),
           SizedBox(
-            width: 150,
+            width: 160,
             child: ElevatedButton(
               onPressed: () {
                 //print('Frukt');
@@ -188,11 +190,11 @@ onCategoriesPressed: () {
                   iMat.findProductsByCategory(ProductCategory.CITRUS_FRUIT),
                 );
               },
-              child: Text('Citrusfrukter'),
+              child: Text('Citrusfrukter',style: GoogleFonts.reemKufi(),),
             ),
           ),SizedBox(height: AppTheme.paddingSmall),
           SizedBox(
-            width: 150,
+            width: 160,
             child: ElevatedButton(
               onPressed: () {
                 //print('Frukt');
@@ -200,11 +202,11 @@ onCategoriesPressed: () {
                   iMat.findProductsByCategory(ProductCategory.HOT_DRINKS),
                 );
               },
-              child: Text('Kaffe/te'),
+              child: Text('Kaffe/te',style: GoogleFonts.reemKufi(),),
             ),
           ),SizedBox(height: AppTheme.paddingSmall),
           SizedBox(
-            width: 150,
+            width: 160,
             child: ElevatedButton(
               onPressed: () {
                 //print('Frukt');
@@ -212,11 +214,11 @@ onCategoriesPressed: () {
                   iMat.findProductsByCategory(ProductCategory.COLD_DRINKS),
                 );
               },
-              child: Text('Kalla drycker'),
+              child: Text('Kalla drycker',style: GoogleFonts.reemKufi(),),
             ),
           ),SizedBox(height: AppTheme.paddingSmall),
           SizedBox(
-            width: 150,
+            width: 160,
             child: ElevatedButton(
               onPressed: () {
                 //print('Frukt');
@@ -224,12 +226,12 @@ onCategoriesPressed: () {
                   iMat.findProductsByCategory(ProductCategory.EXOTIC_FRUIT),
                 );
               },
-              child: Text('Exotiska frukter'),
+              child: Text('Exotiska frukter',style: GoogleFonts.reemKufi(),),
             ),
           ),
           SizedBox(height: AppTheme.paddingSmall),
           SizedBox(
-            width: 150,
+            width: 160,
             child: ElevatedButton(
               onPressed: () {
                 //print('Frukt');
@@ -237,12 +239,12 @@ onCategoriesPressed: () {
                   iMat.findProductsByCategory(ProductCategory.FISH),
                 );
               },
-              child: Text('Fisk'),
+              child: Text('Fisk',style: GoogleFonts.reemKufi(),),
             ),
           ),
           SizedBox(height: AppTheme.paddingSmall),
           SizedBox(
-            width: 150,
+            width: 160,
             child: ElevatedButton(
               onPressed: () {
                 //print('Frukt');
@@ -250,12 +252,12 @@ onCategoriesPressed: () {
                   iMat.findProductsByCategory(ProductCategory.VEGETABLE_FRUIT),
                 );
               },
-              child: Text('Fruktgrönsaker'),
+              child: Text('Fruktgrönsaker',style: GoogleFonts.reemKufi(),),
             ),
           ),
           SizedBox(height: AppTheme.paddingSmall),
           SizedBox(
-            width: 150,
+            width: 160,
             child: ElevatedButton(
               onPressed: () {
                 //print('Frukt');
@@ -263,12 +265,12 @@ onCategoriesPressed: () {
                   iMat.findProductsByCategory(ProductCategory.MEAT),
                 );
               },
-              child: Text('Kött'),
+              child: Text('Kött',style: GoogleFonts.reemKufi(),),
             ),
           ),
           SizedBox(height: AppTheme.paddingSmall),
           SizedBox(
-            width: 150,
+            width: 160,
             child: ElevatedButton(
               onPressed: () {
                 //print('Frukt');
@@ -276,12 +278,12 @@ onCategoriesPressed: () {
                   iMat.findProductsByCategory(ProductCategory.DAIRIES),
                 );
               },
-              child: Text('Mejeriprodukter'),
+              child: Text('Mejeriprodukter',style: GoogleFonts.reemKufi(),),
             ),
           ),
           SizedBox(height: AppTheme.paddingSmall),
           SizedBox(
-            width: 150,
+            width: 160,
             child: ElevatedButton(
               onPressed: () {
                 //print('Frukt');
@@ -289,23 +291,23 @@ onCategoriesPressed: () {
                   iMat.findProductsByCategory(ProductCategory.MELONS),
                 );
               },
-              child: Text('Meloner'),
+              child: Text('Meloner',style: GoogleFonts.reemKufi(),),
             ),
           ),
           SizedBox(height: AppTheme.paddingSmall),
           SizedBox(
-            width: 150,
+            width: 160,
             child: ElevatedButton(
               onPressed: () {
                 //print('Söktest');
                 iMat.selectSelection(iMat.findProducts('mj'));
               },
-              child: Text('Söktest'),
+              child: Text('Söktest',style: GoogleFonts.reemKufi(),),
             ),
           ),
           SizedBox(height: AppTheme.paddingSmall),
           SizedBox(
-            width: 150,
+            width: 160,
             child: ElevatedButton(
               onPressed: () {
                 //print('Frukt');
@@ -313,12 +315,12 @@ onCategoriesPressed: () {
                   iMat.findProductsByCategory(ProductCategory.FLOUR_SUGAR_SALT),
                 );
               },
-              child: Text('Mjöl/socker/salt'),
+              child: Text('Mjöl/socker/salt',style: GoogleFonts.reemKufi(),),
             ),
           ),
           SizedBox(height: AppTheme.paddingSmall),
           SizedBox(
-            width: 150,
+            width: 160,
             child: ElevatedButton(
               onPressed: () {
                 //print('Frukt');
@@ -326,12 +328,12 @@ onCategoriesPressed: () {
                   iMat.findProductsByCategory(ProductCategory.NUTS_AND_SEEDS),
                 );
               },
-              child: Text('Nötter och frön'),
+              child: Text('Nötter och frön',style: GoogleFonts.reemKufi(),),
             ),
           ),
           SizedBox(height: AppTheme.paddingSmall),
           SizedBox(
-            width: 150,
+            width: 160,
             child: ElevatedButton(
               onPressed: () {
                 //print('Frukt');
@@ -339,12 +341,12 @@ onCategoriesPressed: () {
                   iMat.findProductsByCategory(ProductCategory.PASTA),
                 );
               },
-              child: Text('Pasta'),
+              child: Text('Pasta',style: GoogleFonts.reemKufi(),),
             ),
           ),
           SizedBox(height: AppTheme.paddingSmall),
           SizedBox(
-            width: 150,
+            width: 160,
             child: ElevatedButton(
               onPressed: () {
                 //print('Frukt');
@@ -352,12 +354,12 @@ onCategoriesPressed: () {
                   iMat.findProductsByCategory(ProductCategory.POTATO_RICE),
                 );
               },
-              child: Text('Potatis/ris'),
+              child: Text('Potatis/ris',style: GoogleFonts.reemKufi(),),
             ),
           ),
           SizedBox(height: AppTheme.paddingSmall),
           SizedBox(
-            width: 150,
+            width: 160,
             child: ElevatedButton(
               onPressed: () {
                 //print('Frukt');
@@ -365,33 +367,46 @@ onCategoriesPressed: () {
                   iMat.findProductsByCategory(ProductCategory.ROOT_VEGETABLE),
                 );
               },
-              child: Text('Meloner'),
+              child: Text('Rotfrukter',style: GoogleFonts.reemKufi(),),
             ),
           ),
           SizedBox(height: AppTheme.paddingSmall),
           SizedBox(
-            width: 150,
+            width: 160,
             child: ElevatedButton(
               onPressed: () {
                 //print('Frukt');
                 iMat.selectSelection(
-                  iMat.findProductsByCategory(ProductCategory.MELONS),
+                  iMat.findProductsByCategory(ProductCategory.FRUIT),
                 );
               },
-              child: Text('Meloner'),
+              child: Text('Frukt',style: GoogleFonts.reemKufi(),),
             ),
           ),
           SizedBox(height: AppTheme.paddingSmall),
           SizedBox(
-            width: 150,
+            width: 160,
             child: ElevatedButton(
               onPressed: () {
                 //print('Frukt');
                 iMat.selectSelection(
-                  iMat.findProductsByCategory(ProductCategory.MELONS),
+                  iMat.findProductsByCategory(ProductCategory.SWEET),
                 );
               },
-              child: Text('Meloner'),
+              child: Text('Sötsaker',style: GoogleFonts.reemKufi(),),
+            ),
+          ),
+          SizedBox(height: AppTheme.paddingSmall),
+          SizedBox(
+            width: 160,
+            child: ElevatedButton(
+              onPressed: () {
+                //print('Frukt');
+                iMat.selectSelection(
+                  iMat.findProductsByCategory(ProductCategory.HERB),
+                );
+              },
+              child: Text('Örter',style: GoogleFonts.reemKufi(),),
             ),
           ),
         ],
@@ -406,9 +421,9 @@ onCategoriesPressed: () {
     padding: const EdgeInsets.all(4),  // Reduced padding
     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
       crossAxisCount: 4,  // Five columns
-      crossAxisSpacing: 4,  // Reduced spacing
+      crossAxisSpacing: 6,  // Reduced spacing
       mainAxisSpacing: 4,  // Reduced spacing
-      childAspectRatio: 0.5,  // More rectangular shape to fit content
+      childAspectRatio: 0.7,  // More rectangular shape to fit content
     ),
     itemCount: products.length,
     itemBuilder: (BuildContext context, int index) {

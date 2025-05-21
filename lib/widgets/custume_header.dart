@@ -20,46 +20,48 @@ class CustomHeader extends StatelessWidget {
         // Mörkgrön header med iMat, sökfält och knappar
         Container(
           color: const Color(0xFF91C184),
-          padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
+          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
           child: Stack(
             children: [
-              const Align(
+               Align(
                 alignment: Alignment.centerLeft,
-                child: Text(
-                  'iMat',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+                child: InkWell(
+                  onTap: onCategoriesPressed,
+                  child: Image.asset("assets/images/iMat.png",
+                  width: 100,
+                  height: 100,
+                  fit: BoxFit.cover,)
+                )
               ),
-              Align(
-                alignment: Alignment.center,
-                child: SizedBox(
-                  width: MediaQuery.of(context).size.width / 3,
-                  height: 36,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(18),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black26,
-                          blurRadius: 6,
-                          offset: Offset(0, 3),
-                        ),
-                      ],
-                    ),
-                    child: const TextField(
-                      decoration: InputDecoration(
-                        contentPadding:
-                            EdgeInsets.symmetric(horizontal: 16, vertical: 0),
-                        hintText: 'Sök...',
-                        border: InputBorder.none,
-                        prefixIcon: Icon(Icons.search, color: Color(0xFF3D5430)),
+              Padding(
+                padding: const EdgeInsets.only(top: 25),
+                child: Align(
+                  alignment: Alignment.center,
+                  child: SizedBox(
+                    width: MediaQuery.of(context).size.width / 3,
+                    height: 40,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(18),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black26,
+                            blurRadius: 6,
+                            offset: Offset(0, 3),
+                          ),
+                        ],
                       ),
-                      style: TextStyle(color: Colors.black87),
+                      child: const TextField(
+                        decoration: InputDecoration(
+                          contentPadding:
+                              EdgeInsets.symmetric(vertical: 7),
+                          hintText: 'Sök...',
+                          border: InputBorder.none,
+                          prefixIcon: Icon(Icons.search, color: Color(0xFF3D5430)),
+                        ),
+                        style: TextStyle(color: Colors.black87),
+                      ),
                     ),
                   ),
                 ),
@@ -93,7 +95,7 @@ class CustomHeader extends StatelessWidget {
                           ),
                         ),
                         child: const Text(
-                          'konto',
+                          'Konto',
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
                       ),
@@ -122,7 +124,7 @@ class CustomHeader extends StatelessWidget {
                           ),
                         ),
                         child: const Text(
-                          'varukorg',
+                          'Varukorg', 
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
                       ),
@@ -164,7 +166,7 @@ class CustomHeader extends StatelessWidget {
                     ),
                   ),
                   child: const Text(
-                    'kategorier',
+                    'Kategorier',
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ),
@@ -172,10 +174,7 @@ class CustomHeader extends StatelessWidget {
               const Spacer(),
               const Padding(
                 padding: EdgeInsets.only(top: 8.0),
-                child: Text(
-                  'Konto',
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
+                
               ),
               const Spacer(),
               Container(
@@ -203,7 +202,7 @@ class CustomHeader extends StatelessWidget {
                     ),
                   ),
                   child: const Text(
-                    'kundservice',
+                    'Kundservice',
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ),

@@ -2,6 +2,7 @@ import 'package:api_test/model/imat/product.dart';
 import 'package:api_test/model/imat/shopping_item.dart';
 import 'package:api_test/model/imat_data_handler.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class ProductTile extends StatelessWidget {
@@ -20,7 +21,7 @@ class ProductTile extends StatelessWidget {
     final isFavorite = iMat.favorites.contains(product);
 
     return Card(
-      elevation: 2,
+      elevation: 3,
       margin: EdgeInsets.zero,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8),
@@ -33,7 +34,7 @@ class ProductTile extends StatelessWidget {
         child: Stack(
           children: [
             Padding(
-              padding: const EdgeInsets.all(5),
+              padding: const EdgeInsets.all(4),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -42,16 +43,16 @@ class ProductTile extends StatelessWidget {
                     aspectRatio: 1,
                     child: iMat.getImage(product),
                   ),
-                  const SizedBox(height: 7),
+                  const SizedBox(height: 3),
                   
                   // Product Name
                   Text(
                     product.name ?? 'No Name',
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
+                    style: GoogleFonts.roboto(
                       fontSize: compact ? 14 : 16,
-                      fontWeight: FontWeight.w500,
+                      fontWeight: FontWeight.w600,
                     ),
                   ),
                   const Spacer(),
@@ -69,12 +70,14 @@ class ProductTile extends StatelessWidget {
                       ),
                     ],
                   ),
-                  Row(
+                  
+                      Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       IconButton(
                         icon: const Icon(Icons.remove),
                         iconSize: compact ? 18 : 18,
+                      
                         onPressed: () {
                           iMat.shoppingCartRemove(ShoppingItem(product));
                           ScaffoldMessenger.of(context).showSnackBar(
@@ -98,7 +101,6 @@ class ProductTile extends StatelessWidget {
                           );
                         },
                       ),
-                      
                     ],
                   ),
                 ],

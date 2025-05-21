@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class AppTheme {
   static const double paddingTiny = 4.0;
@@ -14,5 +15,5 @@ class AppTheme {
   static const Color darkGreen = Color(0xFF91C184);   // Mörkgrön
   static const Color lightGreen = Color(0xFFE4FEDD);  // Ljusgrön
   static const Color primaryColor = Color(0xFF3D5430); // Används till "Fortsätt handla"-knappen
-}
+  }
 

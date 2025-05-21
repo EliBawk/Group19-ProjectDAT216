@@ -1,4 +1,5 @@
 import 'package:api_test/app_theme.dart';
+import 'package:api_test/pages/history_view.dart';
 import 'package:api_test/pages/main_view.dart';
 import 'package:api_test/widgets/card_details.dart';
 import 'package:api_test/widgets/cart_view.dart';
@@ -160,7 +161,7 @@ class AccountView extends StatelessWidget {
                 // Exempel på action, kan bytas ut
                 Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(builder: (context) => const MainView()),
+                  MaterialPageRoute(builder: (context) => const HistoryView()),
                 );
               },
               style: TextButton.styleFrom(
@@ -172,7 +173,7 @@ class AccountView extends StatelessWidget {
                 ),
               ),
               child: const Text(
-                'fortsätt handla',
+                'Köphistorik',
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
             ),
