@@ -4,6 +4,7 @@ import 'package:api_test/model/imat/util/functions.dart';
 import 'package:api_test/model/imat_data_handler.dart';
 import 'package:api_test/pages/account_view.dart';
 import 'package:api_test/pages/history_view.dart';
+import 'package:api_test/pages/product_view.dart';
 import 'package:api_test/widgets/cart_view.dart';
 import 'package:api_test/widgets/custume_header.dart';
 import 'package:api_test/widgets/product_tile.dart';
@@ -49,7 +50,7 @@ onCategoriesPressed: () {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _leftPanel(iMat),
+                _leftPanel(context, iMat),
                 SizedBox(
                   width: 1017,
                   //height: 400,
@@ -84,7 +85,7 @@ onCategoriesPressed: () {
     );
   }
 
-  Container _leftPanel(ImatDataHandler iMat) {
+  Container _leftPanel(BuildContext context,ImatDataHandler iMat) {
     return Container(
       width: 200,
       color: const Color(0xFF91C184),
@@ -173,6 +174,11 @@ onCategoriesPressed: () {
             width: 160,
             child: ElevatedButton(
               onPressed: () {
+                 Navigator.push(context,
+                MaterialPageRoute(
+                builder: (context) =>  ProductView(category: 'Bär'),
+      ),
+    );
                 //print('Frukt');
                 iMat.selectSelection(
                   iMat.findProductsByCategory(ProductCategory.BERRY),
