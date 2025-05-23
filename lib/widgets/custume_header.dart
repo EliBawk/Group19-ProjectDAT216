@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class CustomHeader extends StatelessWidget {
   final VoidCallback onAccountPressed;
   final VoidCallback onCartPressed;
   final VoidCallback onCategoriesPressed;
+   final VoidCallback onFavoritesPressed;
 
   const CustomHeader({
     Key? key,
     required this.onAccountPressed,
     required this.onCartPressed,
     required this.onCategoriesPressed,
+    required this.onFavoritesPressed,
   }) : super(key: key);
+  
 
   @override
   Widget build(BuildContext context) {
@@ -28,13 +32,13 @@ class CustomHeader extends StatelessWidget {
                 child: InkWell(
                   onTap: onCategoriesPressed,
                   child: Image.asset("assets/images/iMat.png",
-                  width: 100,
-                  height: 100,
+                  width: 75,
+                  height: 75,
                   fit: BoxFit.cover,)
                 )
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 25),
+                padding: const EdgeInsets.only(top: 15),
                 child: Align(
                   alignment: Alignment.center,
                   child: SizedBox(
@@ -73,61 +77,53 @@ class CustomHeader extends StatelessWidget {
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
+                     Padding(
+                       padding: const EdgeInsets.only(left:8.0, right: 8.0, top: 11),
+                       child: TextButton(
+                          onPressed: onAccountPressed,
+                          style: TextButton.styleFrom(
+                            fixedSize: Size(175, 50),
+                            
+                            backgroundColor: const Color(0xFF3D5430),
+                            foregroundColor: Colors.white,
+                            
+                            shape: RoundedRectangleBorder(
+                              
+                              borderRadius: BorderRadius.circular(50),
+                            ),
+                          ),
+                          child:  Text(
+                            'Kundservice',
+                            style: GoogleFonts.reemKufi(
+                              fontSize: 25,
+                              fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                     ),
                     Container(
-                      margin: const EdgeInsets.only(right: 8),
-                      decoration: BoxDecoration(
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black26,
-                            blurRadius: 6,
-                            offset: Offset(0, 3),
+                    
+                      
+                      child: Padding(
+                        padding: const EdgeInsets.only(left:8.0, right: 8.0, top: 11),
+                        child: TextButton(
+                          onPressed: onAccountPressed,
+                          style: TextButton.styleFrom(
+                            fixedSize: Size(125, 50),
+                            
+                            backgroundColor: const Color(0xFF3D5430),
+                            foregroundColor: Colors.white,
+                            
+                            shape: RoundedRectangleBorder(
+                              
+                              borderRadius: BorderRadius.circular(50),
+                            ),
                           ),
-                        ],
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                      child: TextButton(
-                        onPressed: onAccountPressed,
-                        style: TextButton.styleFrom(
-                          backgroundColor: const Color(0xFF3D5430),
-                          foregroundColor: Colors.white,
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 12, vertical: 8),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(16),
+                          child:  Text(
+                            'Konto',
+                            style: GoogleFonts.reemKufi(
+                              fontSize: 25,
+                              fontWeight: FontWeight.bold),
                           ),
-                        ),
-                        child: const Text(
-                          'Konto',
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                    ),
-                    Container(
-                      margin: const EdgeInsets.only(right: 8),
-                      decoration: BoxDecoration(
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black26,
-                            blurRadius: 6,
-                            offset: Offset(0, 3),
-                          ),
-                        ],
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                      child: TextButton(
-                        onPressed: onCartPressed,
-                        style: TextButton.styleFrom(
-                          backgroundColor: const Color(0xFF3D5430),
-                          foregroundColor: Colors.white,
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 12, vertical: 8),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(16),
-                          ),
-                        ),
-                        child: const Text(
-                          'Varukorg', 
-                          style: TextStyle(fontWeight: FontWeight.bold),
                         ),
                       ),
                     ),
@@ -145,34 +141,54 @@ class CustomHeader extends StatelessWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black26,
-                      blurRadius: 6,
-                      offset: Offset(0, 3),
+              Container(  
+                    child:  Padding(
+                      padding: const EdgeInsets.only(left: 8.0),
+                      child: Text(
+                      'Kategorier', 
+                      style: GoogleFonts.reemKufi(fontSize: 30,
+                      fontWeight: FontWeight.w700)
+                      ),
+                                        
                     ),
-                  ],
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                child: TextButton(
-                  onPressed: onCategoriesPressed,
-                  style: TextButton.styleFrom(
-                    backgroundColor: Colors.white,
-                    foregroundColor: Colors.black,
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                  ),
-                  child: const Text(
-                    'Kategorier',
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                ),
+                
               ),
+               Padding(
+                 padding: const EdgeInsets.all(8),
+                 child: Container(
+                  decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(18),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black26,
+                              blurRadius: 6,
+                            
+                            ),
+                          ],
+                        ),
+                   child: 
+                   
+                     TextButton(
+                         onPressed: onFavoritesPressed,
+                        style: TextButton.styleFrom(
+                          backgroundColor: Color(0xFF3D5430),
+                          foregroundColor: Colors.white,
+                          padding:
+                              const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                        ),
+                        child:  Text(
+                          'Favoriter',
+                          style: GoogleFonts.reemKufi(fontSize: 20,
+                          fontWeight: FontWeight.bold)
+                          ),
+                      ),
+                   ),
+               ),
+               
               const Spacer(),
               const Padding(
                 padding: EdgeInsets.only(top: 8.0),
@@ -180,35 +196,10 @@ class CustomHeader extends StatelessWidget {
               ),
               const Spacer(),
               Container(
-                decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black26,
-                      blurRadius: 6,
-                      offset: Offset(0, 3),
+                      margin: const EdgeInsets.only(right: 8),
+                      
+                      
                     ),
-                  ],
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                child: TextButton(
-                  onPressed: () {
-                    // Om du vill koppla "kundservice" senare, lägg till callback på samma sätt
-                  },
-                  style: TextButton.styleFrom(
-                    backgroundColor: Colors.white,
-                    foregroundColor: Colors.black,
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                  ),
-                  child: const Text(
-                    'Kundservice',
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                ),
-              ),
             ],
           ),
         ),

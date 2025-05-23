@@ -34,76 +34,88 @@ class ProductTile extends StatelessWidget {
         child: Stack(
           children: [
             Padding(
-              padding: const EdgeInsets.all(4),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // Product Image
-                  AspectRatio(
-                    aspectRatio: 1,
-                    child: iMat.getImage(product),
-                  ),
-                  const SizedBox(height: 3),
-                  
-                  // Product Name
-                  Text(
-                    product.name ?? 'No Name',
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: GoogleFonts.roboto(
-                      fontSize: compact ? 14 : 16,
-                      fontWeight: FontWeight.w600,
+              padding: const EdgeInsets.all(3),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // Product Image
+                    AspectRatio(
+                      aspectRatio: 1.2,
+                      child: iMat.getImage(product),
                     ),
-                  ),
-                  const Spacer(),
-                  
-                  // Price and Add Button
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        '${product.price?.toStringAsFixed(2) ?? '0.00'} SEK',
-                        style: TextStyle(
-                          fontSize: compact ? 14 : 14,
-                          fontWeight: FontWeight.bold,
+                    const SizedBox(height: 3),
+                    
+                    // Product Name
+                    Text(
+                      product.name ?? 'No Name',
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: GoogleFonts.reemKufi(
+                        fontSize: compact ? 20 : 10,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    
+                    
+                    // Price and Add Button
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          '${product.price?.toStringAsFixed(2) ?? '0.00'} SEK',
+                        style: GoogleFonts.reemKufi(
+                        fontSize: compact ? 15 : 10,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),                      ],
+                    ),
+                    
+                        Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(shape: BoxShape.circle,
+                          color: const Color.fromARGB(255, 156, 10, 0) ),
+                          child: IconButton(
+                            icon: const Icon(Icons.remove),
+                            iconSize:   20,
+                            color: Colors.white,
+                          
+                            onPressed: () {
+                              iMat.shoppingCartRemove(ShoppingItem(product));
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text('Removed ${product.name} from cart'),
+                                  duration: const Duration(seconds: 1),
+                                ),
+                              );
+                            },
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                  
-                      Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      IconButton(
-                        icon: const Icon(Icons.remove),
-                        iconSize: compact ? 18 : 18,
-                      
-                        onPressed: () {
-                          iMat.shoppingCartRemove(ShoppingItem(product));
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text('Removed ${product.name} from cart'),
-                              duration: const Duration(seconds: 1),
-                            ),
-                          );
-                        },
-                      ),
-                      IconButton(
-                        icon: const Icon(Icons.add),
-                        iconSize: compact ? 18 : 18,
-                        onPressed: () {
-                          iMat.shoppingCartAdd(ShoppingItem(product));
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text('Added ${product.name} to cart'),
-                              duration: const Duration(seconds: 1),
-                            ),
-                          );
-                        },
-                      ),
-                    ],
-                  ),
-                ],
+                        Container(
+                          decoration: BoxDecoration(shape: BoxShape.circle,
+                          color: const Color.fromARGB(255, 0, 161, 11) ),
+                          child: IconButton(
+                            icon: const Icon(Icons.add),
+                            iconSize: compact ? 20 : 20,
+                            color: Colors.white,
+                            onPressed: () {
+                              iMat.shoppingCartAdd(ShoppingItem(product));
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text('Added ${product.name} to cart'),
+                                  duration: const Duration(seconds: 1),
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
             

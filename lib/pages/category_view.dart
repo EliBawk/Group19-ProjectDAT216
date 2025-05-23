@@ -43,7 +43,8 @@ onCategoriesPressed: () {
                 context,
                 MaterialPageRoute(builder: (context) => const CategoryView()), // Exempel: kategorier = startsidan
               );
-            }, ),
+            },
+            onFavoritesPressed: iMat.selectFavorites, ),
 
           SizedBox(height: AppTheme.paddingMedium),
           Expanded(

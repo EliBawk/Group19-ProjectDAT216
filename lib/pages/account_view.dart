@@ -40,6 +40,7 @@ class AccountView extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => const MainView()),
                   );
                 },
+                onFavoritesPressed: () {},
               ),
 
               // Promo bar visas här

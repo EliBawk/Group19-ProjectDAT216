@@ -1,12 +1,10 @@
-// product_view.dart
-
 import 'package:flutter/material.dart';
-import 'package:api_test/widgets/custume_header.dart';
+import 'package:api_test/widgets/custume_header.dart'; // din header
 
-class ProductView extends StatelessWidget {
+class ProductsView extends StatelessWidget {
   final String category;
 
-  const ProductView({super.key, required this.category});
+  const ProductsView({Key? key, required this.category}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,31 +14,27 @@ class ProductView extends StatelessWidget {
           children: [
             CustomHeader(
               onAccountPressed: () {
-                Navigator.pushNamed(context, '/account');
+                // navigering till account view
               },
               onCartPressed: () {
-                Navigator.pushNamed(context, '/cart');
+                // navigering till cart view
               },
               onCategoriesPressed: () {
-                Navigator.pop(context);
+                Navigator.pop(context); // går tillbaka till MainView
               },
+              onFavoritesPressed: (){},
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 20),
+              padding: const EdgeInsets.all(16),
               child: Text(
-                '$category',
-                style: const TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                ),
+                'Produkter i kategori: $category',
+                style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
               ),
             ),
+            // Här lägger du listan med produkter, t.ex. GridView eller ListView
             Expanded(
               child: Center(
-                child: Text(
-                  'Här kommer produktkort för "$category"',
-                  style: const TextStyle(fontSize: 18),
-                ),
+                child: Text('Lista över produkter kommer här'),
               ),
             ),
           ],
