@@ -6,6 +6,7 @@ import 'package:api_test/widgets/cart_view.dart';
 import 'package:api_test/widgets/customer_details.dart';
 import 'package:api_test/widgets/custume_header.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class AccountView extends StatelessWidget {
   const AccountView({super.key});
@@ -15,8 +16,7 @@ class AccountView extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: DefaultTextStyle(
-          style: const TextStyle(
-            fontFamily: 'Reem Kufi',
+          style: GoogleFonts.reemKufi(
             color: Colors.black87,
           ),
           child: Column(
@@ -144,48 +144,52 @@ class AccountView extends StatelessWidget {
         ],
       ),
       padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: Row(
+      child: Stack(
         children: [
-          Container(
-            decoration: BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black26,
-                  blurRadius: 6,
-                  offset: Offset(0, 3),
-                ),
-              ],
-              borderRadius: BorderRadius.circular(20),
-            ),
-            child: TextButton(
-              onPressed: () {
-                // Exempel på action, kan bytas ut
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => const HistoryView()),
-                );
-              },
-              style: TextButton.styleFrom(
-                backgroundColor: const Color(0xFF3D5430),
-                foregroundColor: Colors.white,
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
-                ),
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Container(
+              decoration: BoxDecoration(
+                boxShadow: const [
+                  BoxShadow(
+                    color: Colors.black26,
+                    blurRadius: 6,
+                    offset: Offset(0, 3),
+                  ),
+                ],
+                borderRadius: BorderRadius.circular(20),
               ),
-              child: const Text(
-                'Köphistorik',
-                style: TextStyle(fontWeight: FontWeight.bold),
+              child: TextButton(
+                onPressed: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => const HistoryView()),
+                  );
+                },
+                style: TextButton.styleFrom(
+                  backgroundColor: const Color(0xFF3D5430),
+                  foregroundColor: Colors.white,
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                ),
+                child: Text(
+                  'Köphistorik',
+                  style: GoogleFonts.reemKufi(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
+                  ),
+                ),
               ),
             ),
           ),
-          const SizedBox(width: 16),
-          const Expanded(
+          Center(
             child: Text(
-              'Här kan du lägga valfritt innehåll',
-              style: TextStyle(
+              'Konto',
+              style: GoogleFonts.reemKufi(
                 fontWeight: FontWeight.w600,
-                fontSize: 16,
+                fontSize: 22,
               ),
             ),
           ),
