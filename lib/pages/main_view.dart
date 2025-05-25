@@ -104,17 +104,7 @@ onCategoriesPressed: () {
             ),
           ),
           SizedBox(height: AppTheme.paddingSmall),
-          SizedBox(
-            width: 160,
-            child: ElevatedButton(
-              onPressed: () {
-                //print('Favoriter');
-                iMat.selectFavorites();
-              },
-              child: Text('Favoriter',style: GoogleFonts.reemKufi(),),
-            ),
-          ),
-          SizedBox(height: AppTheme.paddingSmall),
+          
           SizedBox(
             width: 160,
             child: ElevatedButton(
@@ -128,7 +118,7 @@ onCategoriesPressed: () {
                   products[110],
                 ]);
               },
-              child: Text('Urval',style: GoogleFonts.reemKufi(),),
+              child: Text('Kampang',style: GoogleFonts.reemKufi(),),
             ),
           ),
           SizedBox(height: AppTheme.paddingSmall),
