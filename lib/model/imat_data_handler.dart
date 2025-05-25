@@ -281,9 +281,18 @@ class ImatDataHandler extends ChangeNotifier {
     setShoppingCart();
   }
 
+  void shoppingCartRemove(ShoppingItem item) {
+  _shoppingCart.updateItem(
+    item,
+    delta: -1.0,
+    removeEmpty: true,
+  );
+  setShoppingCart();
+}
+
   // Tar bort item från kundvagnen.
   // Uppdaterar till servern och meddelar GUI:t att kundvagnen ändrats.
-  void shoppingCartRemove(ShoppingItem item) {
+  void shoppingCartClear(ShoppingItem item) {
     //print('Removing ${item.product.name}');
     _shoppingCart.removeItem(item);
 
@@ -293,12 +302,6 @@ class ImatDataHandler extends ChangeNotifier {
 
   // Tömmer kundvagnen.
   // Uppdaterar på servern och meddelar GUI:t.
-  void shoppingCartClear() {
-    _shoppingCart.clear();
-
-    // Update and notify listeners
-    setShoppingCart();
-  }
 
   double shoppingCartTotal() {
     double total = 0;

@@ -100,4 +100,6 @@ class ShoppingCart {
   */
 
   static const _items = 'items';
+
+  get totalPrice => null;
 }

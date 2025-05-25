@@ -26,115 +26,112 @@ class ProductTile extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8),
       ),
-      child: InkWell(
-        borderRadius: BorderRadius.circular(8),
-        onTap: () {
-          // Product detail view could be added here
-        },
-        child: Stack(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(3),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+      child: Stack(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(11.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Product Image
+                AspectRatio(
+                  aspectRatio: 1.2,
+                  child: iMat.getImage(product),
+                ),
+                const SizedBox(height: 3),
+                
+                // Product Name
+                Text(
+                  product.name ?? 'No Name',
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: GoogleFonts.reemKufi(
+                    fontSize: compact ? 20 : 10,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                
+                
+                // Price and Add Button
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    // Product Image
-                    AspectRatio(
-                      aspectRatio: 1.2,
-                      child: iMat.getImage(product),
-                    ),
-                    const SizedBox(height: 3),
-                    
-                    // Product Name
                     Text(
-                      product.name ?? 'No Name',
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      style: GoogleFonts.reemKufi(
-                        fontSize: compact ? 20 : 10,
-                        fontWeight: FontWeight.w600,
+                      '${product.price?.toStringAsFixed(2) ?? '0.00'} SEK',
+                    style: GoogleFonts.reemKufi(
+                    fontSize: compact ? 15 : 10,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),                      ],
+                ),
+                
+                  Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(shape: BoxShape.circle,
+                      color: const Color.fromARGB(255, 156, 10, 0) ),
+                      child: IconButton(
+                        icon: const Icon(Icons.remove),
+                        iconSize:   17,
+                        color: Colors.white,
+                      
+                        onPressed: () {
+                          iMat.shoppingCartRemove(ShoppingItem(product));
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text('Removed ${product.name} from cart'),
+                              duration: const Duration(seconds: 1),
+                            ),
+                          );
+                        },
                       ),
                     ),
-                    
-                    
-                    // Price and Add Button
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          '${product.price?.toStringAsFixed(2) ?? '0.00'} SEK',
-                        style: GoogleFonts.reemKufi(
-                        fontSize: compact ? 15 : 10,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),                      ],
+                    Container(
+                      decoration: BoxDecoration(shape: BoxShape.circle,
+                      color: const Color.fromARGB(255, 0, 161, 11) ),
+                      
                     ),
-                    
-                        Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Container(
-                          decoration: BoxDecoration(shape: BoxShape.circle,
-                          color: const Color.fromARGB(255, 156, 10, 0) ),
-                          child: IconButton(
-                            icon: const Icon(Icons.remove),
-                            iconSize:   20,
-                            color: Colors.white,
-                          
-                            onPressed: () {
-                              iMat.shoppingCartRemove(ShoppingItem(product));
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text('Removed ${product.name} from cart'),
-                                  duration: const Duration(seconds: 1),
-                                ),
-                              );
-                            },
-                          ),
-                        ),
-                        Container(
-                          decoration: BoxDecoration(shape: BoxShape.circle,
-                          color: const Color.fromARGB(255, 0, 161, 11) ),
-                          child: IconButton(
-                            icon: const Icon(Icons.add),
-                            iconSize: compact ? 20 : 20,
-                            color: Colors.white,
-                            onPressed: () {
-                              iMat.shoppingCartAdd(ShoppingItem(product));
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text('Added ${product.name} to cart'),
-                                  duration: const Duration(seconds: 1),
-                                ),
-                              );
-                            },
-                          ),
-                        ),
-                      ],
+                    Container(
+                      decoration: BoxDecoration(shape: BoxShape.circle,
+                      color: const Color.fromARGB(255, 0, 161, 11) ),
+                      child: IconButton(
+                        icon: const Icon(Icons.add),
+                        iconSize: compact ? 17 : 17,
+                        color: Colors.white,
+                        onPressed: () {
+                          iMat.shoppingCartAdd(ShoppingItem(product));
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text('Added ${product.name} to cart'),
+                              duration: const Duration(seconds: 1),
+                            ),
+                          );
+                        },
+                      ),
                     ),
                   ],
                 ),
-              ),
+              ],
             ),
-            
-            // Favorite button
-            Positioned(
-              top: 4,
-              right: 4,
-              child: IconButton(
-                icon: Icon(
-                  isFavorite ? Icons.favorite : Icons.favorite_border,
-                  color: isFavorite ? Colors.red : Colors.red[600],
-                ),
-                onPressed: () {
-                  iMat.toggleFavorite(product);
-                },
+          ),
+          
+          // Favorite button
+          Positioned(
+            top: 4,
+            right: 10,
+            child: IconButton(
+              icon: Icon(
+                isFavorite ? Icons.favorite : Icons.favorite_border,
+                color: isFavorite ? Colors.red : Colors.red[600],
+                size: 30,
               ),
+              onPressed: () {
+                iMat.toggleFavorite(product);
+              },
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

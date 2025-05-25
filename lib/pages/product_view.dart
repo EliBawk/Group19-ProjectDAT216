@@ -22,7 +22,7 @@ class ProductsView extends StatelessWidget {
               onCategoriesPressed: () {
                 Navigator.pop(context); // går tillbaka till MainView
               },
-              onFavoritesPressed: (){},
+              
             ),
             Padding(
               padding: const EdgeInsets.all(16),

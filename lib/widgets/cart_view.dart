@@ -1,6 +1,7 @@
 import 'package:api_test/model/imat_data_handler.dart';
 import 'package:api_test/widgets/delete_button.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class CartView extends StatelessWidget {
@@ -19,7 +20,12 @@ class CartView extends StatelessWidget {
           Card(
             child: ListTile(
               title: Text(item.product.name),
-              subtitle: Text('${item.amount}'),
+              titleTextStyle: GoogleFonts.reemKufi(fontWeight: FontWeight.bold,
+              fontSize: 20),
+              
+              subtitle: Text('${item.amount}  st'),
+              subtitleTextStyle: GoogleFonts.reemKufi(
+              fontSize: 18),
               trailing: DeleteButton(
                 onPressed: () {
                   // Remove this item and triggers update of the UI.
@@ -27,7 +33,7 @@ class CartView extends StatelessWidget {
                   // Don't remove the item from the list since
                   // That will not trigger rebuild of the UI
                   // and not update the shoppingcart on the server
-                  iMat.shoppingCartRemove(item);
+                  iMat.shoppingCartClear(item);
                 },
               ),
             ),

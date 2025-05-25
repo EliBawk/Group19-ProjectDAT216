@@ -40,7 +40,6 @@ class AccountView extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => const MainView()),
                   );
                 },
-                onFavoritesPressed: () {},
               ),
 
               // Promo bar visas här
@@ -180,15 +179,7 @@ class AccountView extends StatelessWidget {
             ),
           ),
           const SizedBox(width: 16),
-          const Expanded(
-            child: Text(
-              'Här kan du lägga valfritt innehåll',
-              style: TextStyle(
-                fontWeight: FontWeight.w600,
-                fontSize: 16,
-              ),
-            ),
-          ),
+          
         ],
       ),
     );
