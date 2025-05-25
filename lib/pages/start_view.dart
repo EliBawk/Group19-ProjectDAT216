@@ -1,6 +1,7 @@
 import 'package:api_test/widgets/custume_header.dart';
 import 'package:flutter/material.dart';
 import 'package:api_test/pages/main_view.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class StartView extends StatelessWidget {
   const StartView({super.key});
@@ -12,28 +13,25 @@ class StartView extends StatelessWidget {
         child: Column(
           children: [
             CustomHeader(
-              onAccountPressed: () {
-                // navigering till account view
-              },
-              onCartPressed: () {
-                // navigering till cart view
-              },
+              onAccountPressed: () {},
+              onCartPressed: () {},
               onCategoriesPressed: () {
-                Navigator.pop(context); // går tillbaka till MainView
+                Navigator.pop(context);
               },
               onFavoritesPressed: () {},
             ),
 
-            const SizedBox(height: 40),
+            const SizedBox(height: 20),
 
+            // Övre rektangeln
             Container(
               height: 80,
               width: double.infinity,
               color: const Color(0xFFE4FEDD),
               alignment: Alignment.center,
-              child: const Text(
+              child: Text(
                 'Välkommen Gördis',
-                style: TextStyle(
+                style: GoogleFonts.reemKufi(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
                   color: Colors.black,
@@ -41,8 +39,9 @@ class StartView extends StatelessWidget {
               ),
             ),
 
-            const SizedBox(height: 20),
+            const SizedBox(height: 30),
 
+            // Knappen
             SizedBox(
               width: 467,
               height: 139,
@@ -50,7 +49,7 @@ class StartView extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFF3D5430),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20), // större rundning
+                    borderRadius: BorderRadius.circular(80),
                   ),
                 ),
                 onPressed: () {
@@ -59,13 +58,30 @@ class StartView extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => const MainView()),
                   );
                 },
-                child: const Text(
-                  'Börja handla!',
-                  style: TextStyle(
-                    fontSize: 20,
-                    color: Colors.white,
-                  ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Börja handla!',
+                      style: GoogleFonts.reemKufi(
+                        fontSize: 22,
+                        color: Colors.white,
+                      ),
+                    ),
+                    const SizedBox(width: 10),
+                    const Icon(Icons.arrow_forward, color: Colors.white, size: 26),
+                  ],
                 ),
+              ),
+            ),
+
+            const SizedBox(height: 30),
+
+            // Undre rektangeln
+            Expanded(
+              child: Container(
+                width: double.infinity,
+                color: const Color(0xFFE4FEDD),
               ),
             ),
           ],
