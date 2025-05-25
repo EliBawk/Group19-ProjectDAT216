@@ -112,8 +112,7 @@ class MainView extends StatelessWidget {
         children: [
           SizedBox(height: AppTheme.paddingSmall),
           SizedBox(
-            width: 190,
-            height: 50,
+            width: 160,
             child: ElevatedButton(
               onPressed: () {
                 iMat.selectAllProducts();
@@ -122,11 +121,10 @@ class MainView extends StatelessWidget {
                 fontWeight: FontWeight.bold),),
             ),
           ),
-          
           SizedBox(height: AppTheme.paddingSmall),
+          
           SizedBox(
-            width: 190,
-            height: 50,
+            width: 160,
             child: ElevatedButton(
               onPressed: () {
                 var products = iMat.products;
@@ -138,11 +136,64 @@ class MainView extends StatelessWidget {
                   products[110],
                 ]);
               },
-              child: Text('Urval',style: GoogleFonts.reemKufi(fontSize: 18,
+              child: Text('Kampanj',style: GoogleFonts.reemKufi(fontSize: 18,
                 fontWeight: FontWeight.bold),),
+              
             ),
           ),
           SizedBox(height: AppTheme.paddingSmall),
+SizedBox(
+  width: 160,
+  child: ElevatedButton(
+    onPressed: () {
+      var selected = [
+        ...iMat.findProductsByCategory(ProductCategory.FRUIT),
+        ...iMat.findProductsByCategory(ProductCategory.VEGETABLE_FRUIT),
+        ...iMat.findProductsByCategory(ProductCategory.EXOTIC_FRUIT),
+        ...iMat.findProductsByCategory(ProductCategory.CITRUS_FRUIT),
+        ...iMat.findProductsByCategory(ProductCategory.MELONS),
+        ...iMat.findProductsByCategory(ProductCategory.ROOT_VEGETABLE),
+        ...iMat.findProductsByCategory(ProductCategory.CABBAGE),
+        ...iMat.findProductsByCategory(ProductCategory.BERRY)
+      ];
+      iMat.selectSelection(selected);
+    },
+    child: Text('Frukt & Grönt', style: GoogleFonts.reemKufi()),
+  ),
+),
+SizedBox(height: AppTheme.paddingSmall),
+SizedBox(
+  width: 160,
+  child: ElevatedButton(
+    onPressed: () {
+      var selected = [
+        ...iMat.findProductsByCategory(ProductCategory.POTATO_RICE),
+        ...iMat.findProductsByCategory(ProductCategory.PASTA),
+      ];
+      iMat.selectSelection(selected);
+    },
+    child: Text('Kolhydrater', style: GoogleFonts.reemKufi()),
+  ),
+),
+
+SizedBox(height: AppTheme.paddingSmall),
+SizedBox(
+  width: 160,
+  child: ElevatedButton(
+    onPressed: () {
+      var selected = [
+        ...iMat.findProductsByCategory(ProductCategory.FLOUR_SUGAR_SALT),
+        ...iMat.findProductsByCategory(ProductCategory.POD),
+        
+      ];
+      iMat.selectSelection(selected);
+    },
+    child: Text('Torrvaror', style: GoogleFonts.reemKufi()),
+  ),
+),
+
+SizedBox(height: AppTheme.paddingSmall),
+
           SizedBox(
             width: 190,
             height: 50,
@@ -174,8 +225,7 @@ class MainView extends StatelessWidget {
             ),
           ),SizedBox(height: AppTheme.paddingSmall),
           SizedBox(
-            width: 190,
-            height: 50,
+            width: 160,
             child: ElevatedButton(
               onPressed: () {
                 //print('Frukt');
@@ -187,7 +237,7 @@ class MainView extends StatelessWidget {
                 fontWeight: FontWeight.bold),),
             ),
           ),SizedBox(height: AppTheme.paddingSmall),
-          
+
           SizedBox(
             width: 190,
             height: 50,
@@ -216,9 +266,10 @@ class MainView extends StatelessWidget {
                 fontWeight: FontWeight.bold),),
             ),
           ),SizedBox(height: AppTheme.paddingSmall),
+
+        
           SizedBox(
-            width: 190,
-            height: 50,
+            width: 160,
             child: ElevatedButton(
               onPressed: () {
                 //print('Frukt');
@@ -230,6 +281,8 @@ class MainView extends StatelessWidget {
                 fontWeight: FontWeight.bold),),
             ),
           ),SizedBox(height: AppTheme.paddingSmall),
+          
+
           SizedBox(
             width: 190,
             height: 50,
@@ -260,6 +313,9 @@ class MainView extends StatelessWidget {
             ),
           ),
           SizedBox(height: AppTheme.paddingSmall),
+
+
+          
           SizedBox(
             width: 190,
             height: 50,
@@ -290,9 +346,10 @@ class MainView extends StatelessWidget {
             ),
           ),
           SizedBox(height: AppTheme.paddingSmall),
+
+
           SizedBox(
-            width: 190,
-            height: 50,
+            width: 160,
             child: ElevatedButton(
               onPressed: () {
                 //print('Frukt');
@@ -305,6 +362,8 @@ class MainView extends StatelessWidget {
             ),
           ),
           SizedBox(height: AppTheme.paddingSmall),
+
+          
           SizedBox(
             width: 190,
             height: 50,
@@ -333,6 +392,7 @@ class MainView extends StatelessWidget {
             ),
           ),
           SizedBox(height: AppTheme.paddingSmall),
+        
           SizedBox(
             width: 190,
             height: 50,
@@ -363,6 +423,8 @@ class MainView extends StatelessWidget {
             ),
           ),
           SizedBox(height: AppTheme.paddingSmall),
+
+        
           SizedBox(
             width: 190,
             height: 50,
@@ -439,8 +501,7 @@ class MainView extends StatelessWidget {
           ),
           SizedBox(height: AppTheme.paddingSmall),
           SizedBox(
-            width: 190,
-            height: 50,
+            width: 160,
             child: ElevatedButton(
               onPressed: () {
                 //print('Frukt');
@@ -460,24 +521,21 @@ class MainView extends StatelessWidget {
 
 
   Widget _centerStage(BuildContext context, List<Product> products) {
-  return Padding(
-    padding: const EdgeInsets.only(left: 8.0),
-    child: GridView.builder(
-      padding: const EdgeInsets.all(4),  // Reduced padding
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 4,  // Five columns
-        crossAxisSpacing: 8,  // Reduced spacing
-        mainAxisSpacing: 15,  // Reduced spacing
-        childAspectRatio: 0.8,  // More rectangular shape to fit content
-      ),
-      itemCount: products.length,
-      itemBuilder: (BuildContext context, int index) {
-        return ProductTile(
-          products[index],
-          compact: true,  // Assuming ProductTile accepts this parameter
-        );
-      },
+  return GridView.builder(
+    padding: const EdgeInsets.all(4),  // Reduced padding
+    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+      crossAxisCount: 4,  // Five columns
+      crossAxisSpacing: 6,  // Reduced spacing
+      mainAxisSpacing: 4,  // Reduced spacing
+      childAspectRatio: 0.7,  // More rectangular shape to fit content
     ),
+    itemCount: products.length,
+    itemBuilder: (BuildContext context, int index) {
+      return ProductTile(
+        products[index],
+        compact: true,  // Assuming ProductTile accepts this parameter
+      );
+    },
   );
 }
 

@@ -6,6 +6,7 @@ import 'package:api_test/model/imat_data_handler.dart';
 import 'package:api_test/model/internet_handler.dart';
 import 'package:api_test/pages/checkout_view.dart';
 import 'package:api_test/pages/main_view.dart';
+import 'package:api_test/pages/start_view.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
       title: 'iMat Demo',
       theme: ThemeData(
         colorScheme: AppTheme.colorScheme),
-      home: const CheckoutView(),
+      home: const StartView(),
     );
   }
 }

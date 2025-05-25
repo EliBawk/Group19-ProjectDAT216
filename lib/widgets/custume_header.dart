@@ -1,3 +1,4 @@
+import 'package:api_test/pages/main_view.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -21,7 +22,11 @@ class CustomHeader extends StatelessWidget {
           Align(
             alignment: Alignment.centerLeft,
             child: InkWell(
-              onTap: onCartPressed, // Changed to use onCartPressed
+              onTap: () {
+                    Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => MainView()),
+                  );
+                }, // Changed to use onCartPressed
               child: Image.asset(
                 "assets/images/iMat.png",
                 width: 75,
