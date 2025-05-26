@@ -41,46 +41,61 @@ class _CardDetailsState extends State<CardDetails> {
       children: [
         TextField(
           controller: _typeController,
-          decoration: InputDecoration(labelText: 'Kortnummer'),
+          decoration: const InputDecoration(labelText: 'Kortnummer'),
         ),
         TextField(
           controller: _nameController,
-          decoration: InputDecoration(labelText: 'Namn'),
+          decoration: const InputDecoration(labelText: 'Namn'),
         ),
         TextField(
           controller: _monthController,
-          decoration: InputDecoration(labelText: 'Giltigt månad (1-12)'),
+          decoration: const InputDecoration(labelText: 'Giltigt månad (1-12)'),
+          keyboardType: TextInputType.number,
         ),
         TextField(
           controller: _yearController,
-          decoration: InputDecoration(labelText: 'Giltigt år'),
+          decoration: const InputDecoration(labelText: 'Giltigt år'),
+          keyboardType: TextInputType.number,
         ),
         TextField(
           controller: _codeController,
-          decoration: InputDecoration(labelText: 'CVV-kod'),
+          decoration: const InputDecoration(labelText: 'CVV-kod'),
+          keyboardType: TextInputType.number,
         ),
+        const SizedBox(height: 24), // Mer utrymme ovanför knappen
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            ElevatedButton(onPressed: _saveCard, child: Text('Spara')),
+            ElevatedButton(
+              onPressed: _saveCard,
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xFF3D5430), // Mörkgrön färg
+                foregroundColor: Colors.white,
+                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
+                ),
+              ),
+              child: const Text('Spara'),
+            ),
           ],
         ),
       ],
     );
   }
 
-  _saveCard() {
+  void _saveCard() {
     var iMat = Provider.of<ImatDataHandler>(context, listen: false);
     CreditCard card = iMat.getCreditCard();
 
     card.cardType = _typeController.text;
     card.holdersName = _nameController.text;
-    card.validMonth = int.parse(_monthController.text);
-    card.validYear = int.parse(_yearController.text);
+    card.validMonth = int.tryParse(_monthController.text) ?? 0;
+    card.validYear = int.tryParse(_yearController.text) ?? 0;
     card.cardNumber = _numberController.text;
-    card.verificationCode = int.parse(_codeController.text);
+    card.verificationCode = int.tryParse(_codeController.text) ?? 0;
 
-    // This needed to trigger update to the server
+    // Triggerar uppdatering till servern
     iMat.setCreditCard(card);
   }
 }

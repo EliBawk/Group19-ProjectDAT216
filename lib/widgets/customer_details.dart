@@ -3,8 +3,7 @@ import 'package:api_test/model/imat_data_handler.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-// Simple widget to edit card information.
-// It's probably better to use Form
+// Simple widget to edit customer information.
 class CustomerDetails extends StatefulWidget {
   const CustomerDetails({super.key});
 
@@ -31,9 +30,7 @@ class _CustomerDetailsState extends State<CustomerDetails> {
 
     _firstNameController = TextEditingController(text: customer.firstName);
     _lastNameController = TextEditingController(text: customer.lastName);
-    _mobileNumberController = TextEditingController(
-      text: customer.mobilePhoneNumber,
-    );
+    _mobileNumberController = TextEditingController(text: customer.mobilePhoneNumber);
     _emailController = TextEditingController(text: customer.email);
     _addressController = TextEditingController(text: customer.address);
     _postCodeController = TextEditingController(text: customer.postCode);
@@ -46,44 +43,58 @@ class _CustomerDetailsState extends State<CustomerDetails> {
       children: [
         TextField(
           controller: _firstNameController,
-          decoration: InputDecoration(labelText: 'Förnamn'),
+          decoration: const InputDecoration(labelText: 'Förnamn'),
         ),
         TextField(
           controller: _lastNameController,
-          decoration: InputDecoration(labelText: 'Efternamn'),
+          decoration: const InputDecoration(labelText: 'Efternamn'),
         ),
         TextField(
           controller: _mobileNumberController,
-          decoration: InputDecoration(labelText: 'Mobilnummer'),
+          decoration: const InputDecoration(labelText: 'Mobilnummer'),
+          keyboardType: TextInputType.phone,
         ),
         TextField(
           controller: _emailController,
-          decoration: InputDecoration(labelText: 'E-post'),
+          decoration: const InputDecoration(labelText: 'E-post'),
+          keyboardType: TextInputType.emailAddress,
         ),
         TextField(
           controller: _addressController,
-          decoration: InputDecoration(labelText: 'Adress'),
+          decoration: const InputDecoration(labelText: 'Adress'),
         ),
         TextField(
           controller: _postCodeController,
-          decoration: InputDecoration(labelText: 'Postnummer'),
+          decoration: const InputDecoration(labelText: 'Postnummer'),
+          keyboardType: TextInputType.number,
         ),
         TextField(
           controller: _postAddressController,
-          decoration: InputDecoration(labelText: 'Ort'),
+          decoration: const InputDecoration(labelText: 'Ort'),
         ),
+        const SizedBox(height: 24), // Lite mer utrymme ovanför knappen
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            ElevatedButton(onPressed: _saveCustomer, child: Text('Spara')),
+            ElevatedButton(
+              onPressed: _saveCustomer,
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xFF3D5430), // Mörkgrön färg
+                foregroundColor: Colors.white,
+                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
+                ),
+              ),
+              child: const Text('Spara'),
+            ),
           ],
         ),
       ],
     );
   }
 
-  _saveCustomer() {
-    //var iMat = Provider.of<ImatDataHandler>(context, listen: false);
+  void _saveCustomer() {
     Customer customer = _imatDataHandler.getCustomer();
 
     customer.firstName = _firstNameController.text;
@@ -94,7 +105,7 @@ class _CustomerDetailsState extends State<CustomerDetails> {
     customer.postCode = _postCodeController.text;
     customer.postAddress = _postAddressController.text;
 
-    // This is needed to trigger updates to the server
+    // Triggera uppdatering till servern
     _imatDataHandler.setCustomer(customer);
   }
 }

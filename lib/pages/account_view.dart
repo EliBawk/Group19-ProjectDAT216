@@ -42,10 +42,10 @@ class AccountView extends StatelessWidget {
                 },
               ),
 
-              // Promo bar visas här
+              // Ny snygg grön bar med Konto
               _promoBar(context),
 
-              // Expanded med scroll om innehållet blir stort
+              // Innehåll med scroll
               Expanded(
                 child: SingleChildScrollView(
                   padding: const EdgeInsets.all(16),
@@ -55,7 +55,7 @@ class AccountView extends StatelessWidget {
                       // Box 1: Leveransuppgifter
                       Expanded(
                         child: Container(
-                          height: 450,
+                          height: 463, // ökade från 450 till 463
                           padding: const EdgeInsets.all(16),
                           decoration: BoxDecoration(
                             color: const Color(0xFFE4FEDD),
@@ -90,7 +90,7 @@ class AccountView extends StatelessWidget {
                       // Box 2: Betalningsuppgifter
                       Expanded(
                         child: Container(
-                          height: 450,
+                          height: 463, // ökade från 450 till 463
                           padding: const EdgeInsets.all(16),
                           decoration: BoxDecoration(
                             color: const Color(0xFFE4FEDD),
@@ -132,63 +132,63 @@ class AccountView extends StatelessWidget {
 
   Widget _promoBar(BuildContext context) {
     return Container(
-      height: 60,
       width: double.infinity,
-      margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-      decoration: BoxDecoration(
-        color: const Color(0xFFE4FEDD),
-        borderRadius: BorderRadius.circular(8),
-        boxShadow: const [
-          BoxShadow(blurRadius: 4, offset: Offset(0, 2), color: Colors.black26),
-        ],
-      ),
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: Stack(
+      color: const Color(0xFFE4FEDD),
+      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Container(
-              decoration: BoxDecoration(
-                boxShadow: const [
-                  BoxShadow(
-                    color: Colors.black26,
-                    blurRadius: 6,
-                    offset: Offset(0, 3),
-                  ),
-                ],
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: TextButton(
-                onPressed: () {
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(builder: (context) => const HistoryView()),
-                  );
-                },
-                style: TextButton.styleFrom(
-                  backgroundColor: const Color(0xFF3D5430),
-                  foregroundColor: Colors.white,
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                ),
-                child: Text(
-                  'Köphistorik',
-                  style: GoogleFonts.reemKufi(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
-                  ),
-                ),
-              ),
+          Text(
+            'Konto',
+            style: GoogleFonts.reemKufi(
+              fontSize: 30,
+              fontWeight: FontWeight.w700,
             ),
           ),
-          Center(
-            child: Text(
-              'Konto',
-              style: GoogleFonts.reemKufi(
-                fontWeight: FontWeight.w600,
-                fontSize: 22,
+          const Spacer(),
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(18),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.5),
+                  blurRadius: 6,
+                  offset: const Offset(0, 4),
+                ),
+              ],
+            ),
+            child: TextButton(
+              onPressed: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => const HistoryView()),
+                );
+              },
+              style: TextButton.styleFrom(
+                backgroundColor: const Color(0xFF3D5430),
+                foregroundColor: Colors.white,
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16),
+                ),
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Icon(
+                    Icons.history,
+                    color: Colors.white,
+                    size: 24,
+                  ),
+                  const SizedBox(width: 8),
+                  Text(
+                    'Köphistorik',
+                    style: GoogleFonts.reemKufi(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
