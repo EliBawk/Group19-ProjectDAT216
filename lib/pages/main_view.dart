@@ -49,7 +49,6 @@ class MainView extends StatelessWidget {
             onFavoritesPressed: () => iMat.selectFavorites(),
             onCategoriesPressed: () {},
           ),
-          SizedBox(height: AppTheme.paddingMedium),
           Expanded(
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -85,18 +84,24 @@ class MainView extends StatelessWidget {
             style: GoogleFonts.reemKufi(
                 fontSize: 20, fontWeight: FontWeight.w700),
           ),
-          SizedBox(height: 500, child: CartView()),
-          FilledButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => CheckoutView()),
-              );
-            },
-            child: Text(
-              'Till betalning!',
-              style: GoogleFonts.reemKufi(
-                  fontSize: 20, fontWeight: FontWeight.bold),
+          SizedBox(height: 533, child: CartView()),
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: FilledButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => CheckoutView()),
+                );
+              },
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  'Till betalning!',
+                  style: GoogleFonts.reemKufi(
+                      fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+              ),
             ),
           ),
         ],

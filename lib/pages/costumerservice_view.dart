@@ -1,3 +1,4 @@
+import 'package:api_test/pages/account_view.dart';
 import 'package:api_test/widgets/custume_header.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -14,7 +15,12 @@ class CustomerServiceView extends StatelessWidget {
         children: [
           // Headern högst upp
           CustomHeader(
-            onAccountPressed: () {},
+            onAccountPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const AccountView()),
+              );
+            },
             onCartPressed: () {},
             onCategoriesPressed: () {},
           ),

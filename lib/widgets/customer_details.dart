@@ -64,6 +64,7 @@ class _CustomerDetailsState extends State<CustomerDetails> {
           decoration: const InputDecoration(labelText: 'Adress'),
         ),
         TextField(
+          
           controller: _postCodeController,
           decoration: const InputDecoration(labelText: 'Postnummer'),
           keyboardType: TextInputType.number,

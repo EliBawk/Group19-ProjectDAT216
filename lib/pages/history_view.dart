@@ -1,6 +1,7 @@
 import 'package:api_test/app_theme.dart';
 import 'package:api_test/model/imat/order.dart';
 import 'package:api_test/model/imat_data_handler.dart';
+import 'package:api_test/pages/account_view.dart';
 import 'package:api_test/widgets/custume_header.dart';
 import 'package:api_test/widgets/lower_header.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +28,12 @@ class _HistoryViewState extends State<HistoryView> {
       body: Column(
         children: [
           CustomHeader(
-            onAccountPressed: () {}, // Add account navigation if needed
+            onAccountPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const AccountView()),
+              );
+            }, // Add account navigation if needed
             onCartPressed: () {}, 
             onCategoriesPressed: () {},
           ),
