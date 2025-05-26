@@ -1,16 +1,19 @@
+import 'package:api_test/pages/costumerservice_view.dart';
 import 'package:api_test/pages/main_view.dart';
+import 'package:api_test/pages/costumerservice_view.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CustomHeader extends StatelessWidget {
   final VoidCallback onAccountPressed;
   final VoidCallback onCartPressed;
+  final VoidCallback onCategoriesPressed;
 
   const CustomHeader({
     Key? key,
     required this.onAccountPressed,
     required this.onCartPressed,
-    required Null Function() onCategoriesPressed,
+    required this.onCategoriesPressed,
   }) : super(key: key);
 
   @override
@@ -96,7 +99,14 @@ class CustomHeader extends StatelessWidget {
                         borderRadius: BorderRadius.circular(50),
                       ),
                       child: TextButton(
-                        onPressed: onAccountPressed,
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const CustomerServiceView(),
+                            ),
+                          );
+                        },
                         style: TextButton.styleFrom(
                           fixedSize: const Size(175, 50),
                           backgroundColor: const Color(0xFF3D5430),
@@ -125,8 +135,7 @@ class CustomHeader extends StatelessWidget {
 
                   // Konto-knapp med ikon och skugga
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 0.0, vertical: 11), 
-                    // Tar bort horisontell padding här så att denna knapp är precis vid kanten inifrån
+                    padding: const EdgeInsets.symmetric(horizontal: 0.0, vertical: 11),
                     child: Container(
                       decoration: BoxDecoration(
                         boxShadow: [
