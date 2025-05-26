@@ -22,10 +22,10 @@ class LowerHeader extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 8.0),
             child: Text(
-              'Kategorier', 
+              'Kategorier',
               style: GoogleFonts.reemKufi(
                 fontSize: 30,
-                fontWeight: FontWeight.w700
+                fontWeight: FontWeight.w700,
               ),
             ),
           ),
@@ -33,12 +33,12 @@ class LowerHeader extends StatelessWidget {
             padding: const EdgeInsets.only(left: 50, top: 10),
             child: Container(
               decoration: BoxDecoration(
-                color: Colors.white,
                 borderRadius: BorderRadius.circular(18),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black26,
-                    blurRadius: 10,
+                    color: Colors.black.withOpacity(0.5), // starkare skugga
+                    blurRadius: 6,
+                    offset: Offset(0, 4), // lägre skugga
                   ),
                 ],
               ),
@@ -52,12 +52,23 @@ class LowerHeader extends StatelessWidget {
                     borderRadius: BorderRadius.circular(16),
                   ),
                 ),
-                child: Text(
-                  'Favoriter',
-                  style: GoogleFonts.reemKufi(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold
-                  ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Icon(
+                      Icons.favorite,
+                      color: Colors.red,
+                      size: 24,
+                    ),
+                    const SizedBox(width: 8),
+                    Text(
+                      'Favoriter',
+                      style: GoogleFonts.reemKufi(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),

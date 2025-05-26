@@ -59,7 +59,7 @@ class MainView extends StatelessWidget {
               children: [
                 _leftPanel(context, iMat),
                 SizedBox(
-                  width: 970,
+                  width: 780,
                   //height: 400,
                   child: _centerStage(context, products),
                 ),

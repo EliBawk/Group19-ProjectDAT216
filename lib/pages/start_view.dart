@@ -18,7 +18,6 @@ class StartView extends StatelessWidget {
               onCategoriesPressed: () {
                 Navigator.pop(context);
               },
-             
             ),
 
             const SizedBox(height: 20),
@@ -41,16 +40,28 @@ class StartView extends StatelessWidget {
 
             const SizedBox(height: 30),
 
-            // Knappen
-            SizedBox(
+            // Knappen med skugga
+            Container(
               width: 467,
               height: 139,
+              decoration: BoxDecoration(
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.5),
+                    blurRadius: 12,
+                    offset: const Offset(0, 6),
+                  ),
+                ],
+                borderRadius: BorderRadius.circular(80),
+              ),
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFF3D5430),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(80),
                   ),
+                  elevation: 0, // Elevation sätts till 0 eftersom vi använder BoxShadow istället
+                  shadowColor: Colors.transparent,
                 ),
                 onPressed: () {
                   Navigator.push(

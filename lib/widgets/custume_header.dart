@@ -5,11 +5,12 @@ import 'package:google_fonts/google_fonts.dart';
 class CustomHeader extends StatelessWidget {
   final VoidCallback onAccountPressed;
   final VoidCallback onCartPressed;
-  
+
   const CustomHeader({
     Key? key,
     required this.onAccountPressed,
-    required this.onCartPressed, required Null Function() onCategoriesPressed,
+    required this.onCartPressed,
+    required Null Function() onCategoriesPressed,
   }) : super(key: key);
 
   @override
@@ -19,22 +20,26 @@ class CustomHeader extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
       child: Stack(
         children: [
+          // Vänster: logotyp
           Align(
             alignment: Alignment.centerLeft,
             child: InkWell(
               onTap: () {
-                    Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => MainView()),
-                  );
-                }, // Changed to use onCartPressed
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MainView()),
+                );
+              },
               child: Image.asset(
                 "assets/images/iMat.png",
                 width: 75,
                 height: 75,
                 fit: BoxFit.cover,
-              )
-            )
+              ),
+            ),
           ),
+
+          // Mitten: sökfält
           Padding(
             padding: const EdgeInsets.only(top: 15),
             child: Align(
@@ -48,7 +53,7 @@ class CustomHeader extends StatelessWidget {
                     borderRadius: BorderRadius.circular(18),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.black26,
+                        color: Colors.black.withOpacity(0.4),
                         blurRadius: 6,
                         offset: Offset(0, 3),
                       ),
@@ -67,34 +72,69 @@ class CustomHeader extends StatelessWidget {
               ),
             ),
           ),
+
+          // Höger: knappar
           Align(
             alignment: Alignment.centerRight,
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
+                // Kundservice-knapp med ikon och skugga
                 Padding(
                   padding: const EdgeInsets.only(left: 8.0, right: 8.0, top: 11),
-                  child: TextButton(
-                    onPressed: onAccountPressed,
-                    style: TextButton.styleFrom(
-                      fixedSize: const Size(175, 50),
-                      backgroundColor: const Color(0xFF3D5430),
-                      foregroundColor: Colors.white,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(50),
-                      ),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.5),
+                          blurRadius: 6,
+                          offset: Offset(0, 4),
+                        ),
+                      ],
+                      borderRadius: BorderRadius.circular(50),
                     ),
-                    child: Text(
-                      'Kundservice',
-                      style: GoogleFonts.reemKufi(
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold),
+                    child: TextButton(
+                      onPressed: onAccountPressed,
+                      style: TextButton.styleFrom(
+                        fixedSize: const Size(175, 50),
+                        backgroundColor: const Color(0xFF3D5430),
+                        foregroundColor: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(50),
+                        ),
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          const Icon(Icons.support_agent, color: Colors.white, size: 26),
+                          const SizedBox(width: 8),
+                          Text(
+                            'Kundservice',
+                            style: GoogleFonts.reemKufi(
+                              fontSize: 18,  // Ändrat till 18
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
-                Container(
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 8.0, right: 8.0, top: 11),
+
+                // Konto-knapp med ikon och skugga
+                Padding(
+                  padding: const EdgeInsets.only(left: 8.0, right: 8.0, top: 11),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.5),
+                          blurRadius: 6,
+                          offset: Offset(0, 4),
+                        ),
+                      ],
+                      borderRadius: BorderRadius.circular(50),
+                    ),
                     child: TextButton(
                       onPressed: onAccountPressed,
                       style: TextButton.styleFrom(
@@ -105,11 +145,19 @@ class CustomHeader extends StatelessWidget {
                           borderRadius: BorderRadius.circular(50),
                         ),
                       ),
-                      child: Text(
-                        'Konto',
-                        style: GoogleFonts.reemKufi(
-                          fontSize: 25,
-                          fontWeight: FontWeight.bold),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          const Icon(Icons.person, color: Colors.white, size: 26),
+                          const SizedBox(width: 8),
+                          Text(
+                            'Konto',
+                            style: GoogleFonts.reemKufi(
+                              fontSize: 18,  // Ändrat till 18
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
