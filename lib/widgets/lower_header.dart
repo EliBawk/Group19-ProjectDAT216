@@ -30,7 +30,7 @@ class LowerHeader extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 50, top: 10),
+            padding: const EdgeInsets.only(left: 35, top: 10), // <-- ändrat här
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(18),
@@ -38,7 +38,7 @@ class LowerHeader extends StatelessWidget {
                   BoxShadow(
                     color: Colors.black.withOpacity(0.5), // starkare skugga
                     blurRadius: 6,
-                    offset: Offset(0, 4), // lägre skugga
+                    offset: const Offset(0, 4), // lägre skugga
                   ),
                 ],
               ),
@@ -47,7 +47,8 @@ class LowerHeader extends StatelessWidget {
                 style: TextButton.styleFrom(
                   backgroundColor: const Color(0xFF3D5430),
                   foregroundColor: Colors.white,
-                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(16),
                   ),
