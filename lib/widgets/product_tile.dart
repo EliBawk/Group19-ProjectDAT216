@@ -64,6 +64,12 @@ class ProductTile extends StatelessWidget {
                   ),
                 ),                      ],
                 ),
+                SizedBox(
+                  height: 12,
+                  width: 10,
+                  
+                  
+                ),
                 
                   Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,

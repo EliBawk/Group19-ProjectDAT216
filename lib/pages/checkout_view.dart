@@ -52,7 +52,7 @@ class CheckoutView extends StatelessWidget {
             Text(
               'Din varukorg',
               style: GoogleFonts.reemKufi(
-                fontSize: 24,
+                fontSize: 34,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -66,6 +66,7 @@ class CheckoutView extends StatelessWidget {
             for (final item in items) ...[
               _CartItemRow(
                 item: item,
+                
                 onIncrease: () => iMat.shoppingCartAdd(item), 
                 onDecrease: () => iMat.shoppingCartRemove(item), iMat: iMat,  
                 
@@ -92,14 +93,14 @@ class CheckoutView extends StatelessWidget {
                         Text(
                           'Totalt:',
                           style: GoogleFonts.reemKufi(
-                            fontSize: 18,
+                            fontSize: 30,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
                         Text(
                           _formatCurrency(totalCost),
                           style: GoogleFonts.reemKufi(
-                            fontSize: 18,
+                            fontSize: 30,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -112,13 +113,13 @@ class CheckoutView extends StatelessWidget {
                         Text(
                           'Varav moms:',
                           style: GoogleFonts.reemKufi(
-                            fontSize: 16,
+                            fontSize: 20,
                           ),
                         ),
                         Text(
                           _formatCurrency(totalCost * 0.25), // Assuming 25% VAT
                           style: GoogleFonts.reemKufi(
-                            fontSize: 16,
+                            fontSize: 20,
                           ),
                         ),
                       ],
@@ -183,6 +184,7 @@ class CheckoutView extends StatelessWidget {
         ),
       ),
     );
+    
   }
 
   // Helper method to safely convert to double

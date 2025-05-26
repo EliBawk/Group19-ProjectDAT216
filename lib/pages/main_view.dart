@@ -52,16 +52,19 @@ class MainView extends StatelessWidget {
       onFavoritesPressed: () => iMat.selectFavorites(), onCategoriesPressed: () {  },
     ),
 
-          SizedBox(height: AppTheme.paddingMedium),
+          
           Expanded(
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 _leftPanel(context, iMat),
                 SizedBox(
-                  width: 780,
+                  width: 966,
                   //height: 400,
-                  child: _centerStage(context, products),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left:10.0, right: 10.0),
+                    child: _centerStage(context, products),
+                  ),
                 ),
                 SizedBox(
                   
@@ -525,9 +528,9 @@ SizedBox(height: AppTheme.paddingSmall),
     padding: const EdgeInsets.all(4),  // Reduced padding
     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
       crossAxisCount: 4,  // Five columns
-      crossAxisSpacing: 6,  // Reduced spacing
-      mainAxisSpacing: 4,  // Reduced spacing
-      childAspectRatio: 0.7,  // More rectangular shape to fit content
+      crossAxisSpacing: 10,  // Reduced spacing
+      mainAxisSpacing: 10,  // Reduced spacing
+      childAspectRatio: 0.75,  // More rectangular shape to fit content
     ),
     itemCount: products.length,
     itemBuilder: (BuildContext context, int index) {
