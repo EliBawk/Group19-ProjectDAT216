@@ -22,13 +22,7 @@ class CheckoutView extends StatelessWidget {
             onAccountPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const AccountView())),
             onCartPressed: () {}, onCategoriesPressed: () {  }, // Already on checkout page
           ),
-          LowerHeader(
-            onCategoriesPressed: () => Navigator.pop(context),
-            onFavoritesPressed: () {
-              context.read<ImatDataHandler>().selectFavorites();
-              Navigator.pop(context);
-            },
-          ),
+          
           Expanded(
             child: _buildCheckoutContent(context),
           ),
@@ -42,6 +36,13 @@ class CheckoutView extends StatelessWidget {
     final cart = iMat.getShoppingCart();
     final items = cart.items;
     final total = _safeToDouble(cart.totalPrice);
+
+    double totalCost = 0;
+    for (final item in items) {
+      final price = _safeToDouble(item.product.price);
+      final amount = item.amount is int ? item.amount : int.tryParse(item.amount.toString()) ?? 1;
+      totalCost += price * amount;
+    }
 
     return SingleChildScrollView(
       child: Padding(
@@ -74,30 +75,62 @@ class CheckoutView extends StatelessWidget {
             ],
 
             const SizedBox(height: 20),
-            Text(
-              'Frakt beräknas i kassan',
-              style: GoogleFonts.reemKufi(fontSize: 16),
+
+            Container(
+              padding: const EdgeInsets.symmetric(vertical: 16),
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.grey.shade300),
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Totalt:',
+                          style: GoogleFonts.reemKufi(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Text(
+                          _formatCurrency(totalCost),
+                          style: GoogleFonts.reemKufi(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 8),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Varav moms:',
+                          style: GoogleFonts.reemKufi(
+                            fontSize: 16,
+                          ),
+                        ),
+                        Text(
+                          _formatCurrency(totalCost * 0.25), // Assuming 25% VAT
+                          style: GoogleFonts.reemKufi(
+                            fontSize: 16,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
             ),
+
+            
             const SizedBox(height: 10),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Att betala:',
-                  style: GoogleFonts.reemKufi(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                Text(
-                  '${_formatCurrency(total)}',
-                  style: GoogleFonts.reemKufi(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ],
-            ),
+            
             const Divider(),
 
             // Buttons row
@@ -281,9 +314,9 @@ class _CartItemRowState extends State<_CartItemRow> {
               IconButton(
               icon: const Icon(Icons.add),
               onPressed: () {
-                widget.iMat.shoppingCartAdd(widget.item);  // Fixed call
-                setState(() {});  // Added to force UI update
-              },
+                  widget.iMat.shoppingCartAdd(ShoppingItem(widget.item.product)); // Modified to match product tile
+                  setState(() {}); // Added to force UI update
+                },
               splashRadius: 20,
             ),
             ],

@@ -92,7 +92,7 @@ class MainView extends StatelessWidget {
             );
           },
             
-            child: Text('Köp!',
+            child: Text('Till betalning!',
             style: GoogleFonts.reemKufi(fontSize: 20,
             fontWeight: FontWeight.bold)),
             
