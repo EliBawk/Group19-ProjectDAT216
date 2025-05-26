@@ -9,32 +9,39 @@ class CartView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Använder watch eftersom denna vyn behöver uppdateras
-    // om ett item tas bort ur kundvagnen
     var iMat = context.watch<ImatDataHandler>();
     var items = iMat.getShoppingCart().items;
+    final screenWidth = MediaQuery.of(context).size.width;
 
     return ListView(
       children: [
         for (final item in items)
-          Card(
-            child: ListTile(
-              title: Text(item.product.name),
-              titleTextStyle: GoogleFonts.reemKufi(fontWeight: FontWeight.bold,
-              fontSize: 20),
-              
-              subtitle: Text('${item.amount}  st'),
-              subtitleTextStyle: GoogleFonts.reemKufi(
-              fontSize: 18),
-              trailing: DeleteButton(
-                onPressed: () {
-                  // Remove this item and triggers update of the UI.
-                  // Also updates to the server.
-                  // Don't remove the item from the list since
-                  // That will not trigger rebuild of the UI
-                  // and not update the shoppingcart on the server
-                  iMat.shoppingCartClear(item);
-                },
+          // Wrapper som fixar bredd och alignment höger
+          Align(
+            alignment: Alignment.centerRight,
+            child: Container(
+              // Card bredd = skärmbredd minus 32 px (16 px padding på vardera sida)
+              width: screenWidth - 32,
+              padding: const EdgeInsets.only(right: 16), // 16 px padding från höger
+              child: Card(
+                child: ListTile(
+                  title: Text(
+                    item.product.name,
+                    style: GoogleFonts.reemKufi(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                    ),
+                  ),
+                  subtitle: Text(
+                    '${item.amount}  st',
+                    style: GoogleFonts.reemKufi(fontSize: 18),
+                  ),
+                  trailing: DeleteButton(
+                    onPressed: () {
+                      iMat.shoppingCartClear(item);
+                    },
+                  ),
+                ),
               ),
             ),
           ),
