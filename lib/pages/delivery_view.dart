@@ -7,7 +7,7 @@ import 'package:api_test/model/imat_data_handler.dart';
 import 'package:api_test/model/imat/customer.dart';
 import 'package:api_test/widgets/custume_header.dart';
 import 'package:intl/date_symbol_data_local.dart'; // För svenska datum
-
+import 'package:api_test/pages/main_view.dart';
 
 
 
@@ -147,7 +147,7 @@ class _DeliveryViewState extends State<DeliveryView> {
                 // Kalender
                 SizedBox(
                   width: 400,
-                  height: 550, // Höjd ökad för månadsnavigering
+                  height: 400, // Höjd ökad för månadsnavigering
                   child: Column(
                     children: [
                       // Månadsnavigering
@@ -217,6 +217,65 @@ class _DeliveryViewState extends State<DeliveryView> {
               ],
             ),
           ),
+          SizedBox(
+            height: 100,
+            width: 200,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                        color: const Color(0xFF3D5430),
+                        borderRadius: BorderRadius.circular(40),
+                      ),
+                child: TextButton(
+                  onPressed: () {Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => const CredentialsView()),
+                              );},
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                        'Tillbaka till personuppgifter',
+                        style: GoogleFonts.reemKufi(
+                                      fontSize: 40,
+                                      fontWeight: FontWeight.bold,
+                                      color:  Colors.white,
+                                    ),
+                                  ),
+                ),
+                ),
+              ),
+              Container(
+                decoration: BoxDecoration(
+                        color: const Color(0xFF3D5430),
+                        borderRadius: BorderRadius.circular(40),
+                      ),
+                child: TextButton(
+                  
+                      onPressed: () {
+                        iMat.placeOrder();
+                    Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => MainView()),
+                  ); 
+                },
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                        'Bekräfta köp!',
+                        style: GoogleFonts.reemKufi(
+                                      fontSize: 40,
+                                      fontWeight: FontWeight.bold,
+                                      color:  Colors.white,
+                                    ),
+                                  ),
+                ),
+                ),
+              )
+            ],
+          )
         ],
       ),
     );
@@ -369,6 +428,7 @@ class _DeliveryViewState extends State<DeliveryView> {
       },
       children: rows,
     );
+    
   }
 
   Widget _buildDetailItem(String label, String? value) {
