@@ -4,16 +4,16 @@ import 'package:api_test/model/imat/customer.dart';
 import 'package:api_test/model/imat/util/functions.dart';
 import 'package:api_test/model/imat_data_handler.dart';
 import 'package:api_test/model/internet_handler.dart';
-import 'package:api_test/pages/checkout_view.dart';
-import 'package:api_test/pages/credentials_view.dart';
-import 'package:api_test/pages/main_view.dart';
+import 'package:api_test/pages/delivery_view.dart';
 import 'package:api_test/pages/start_view.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
-
+import 'package:intl/intl_standalone.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+void main() async {
+  await initializeDateFormatting('sv_SE', null); // Svenska locale
   runApp(
     ChangeNotifierProvider(
       create: (context) => ImatDataHandler(),
@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
       title: 'iMat Demo',
       theme: ThemeData(
         colorScheme: AppTheme.colorScheme),
-      home: const CredentialsView(),
+      home: const DeliveryView(),
     );
   }
 }

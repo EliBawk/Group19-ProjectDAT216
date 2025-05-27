@@ -1,9 +1,9 @@
 import 'package:api_test/model/imat/product.dart';
 import 'package:api_test/pages/account_view.dart';
+import 'package:api_test/pages/credentials_view.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:api_test/widgets/custume_header.dart';
-import 'package:api_test/widgets/lower_header.dart';
 import 'package:api_test/model/imat_data_handler.dart';
 import 'package:provider/provider.dart';
 import 'package:api_test/pages/main_view.dart';
@@ -35,7 +35,7 @@ class CheckoutView extends StatelessWidget {
     final iMat = context.watch<ImatDataHandler>();
     final cart = iMat.getShoppingCart();
     final items = cart.items;
-    final total = _safeToDouble(cart.totalPrice);
+    _safeToDouble(cart.totalPrice);
 
     double totalCost = 0;
     for (final item in items) {
@@ -160,10 +160,11 @@ class CheckoutView extends StatelessWidget {
                 const SizedBox(width: 16),
                 Expanded(
                   child: ElevatedButton(
-                    onPressed: () { iMat.placeOrder();
-                      
-                      // Checkout logic
-                    },
+                    onPressed: () {
+                    Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => CredentialsView()),
+                  );
+                },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFF3D5430),
                       padding: const EdgeInsets.symmetric(vertical: 16),

@@ -4,10 +4,10 @@ import 'package:api_test/model/imat/credit_card.dart';
 import 'package:api_test/model/imat/customer.dart';
 import 'package:api_test/model/imat_data_handler.dart';
 import 'package:api_test/pages/account_view.dart';
+import 'package:api_test/pages/delivery_view.dart';
 import 'package:api_test/widgets/card_details.dart';
 import 'package:api_test/widgets/customer_details.dart';
 import 'package:api_test/widgets/custume_header.dart';
-import 'package:api_test/widgets/lower_header.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -170,8 +170,10 @@ class CredentialsView extends StatelessWidget {
                   children: [
                     ElevatedButton(
                       onPressed: () {
-                        // Add functionality for delivery options
-                      },
+                    Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => AccountView()),
+                  );
+                },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color(0xFF3D5430),
                         padding: const EdgeInsets.all(16),
@@ -190,8 +192,10 @@ class CredentialsView extends StatelessWidget {
                     ),
                     ElevatedButton(
                       onPressed: () {
-                        // Add functionality for delivery options
-                      },
+                    Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => DeliveryView()),
+                  );
+                },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color(0xFF3D5430),
                         padding: const EdgeInsets.all(16),

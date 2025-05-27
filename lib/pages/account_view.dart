@@ -1,4 +1,3 @@
-import 'package:api_test/app_theme.dart';
 import 'package:api_test/pages/history_view.dart';
 import 'package:api_test/pages/main_view.dart';
 import 'package:api_test/widgets/card_details.dart';
