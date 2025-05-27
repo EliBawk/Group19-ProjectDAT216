@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
       title: 'iMat Demo',
       theme: ThemeData(
         colorScheme: AppTheme.colorScheme),
-      home: const DeliveryView(),
+      home: const StartView(),
     );
   }
 }
