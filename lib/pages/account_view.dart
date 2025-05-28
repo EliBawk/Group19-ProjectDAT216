@@ -41,7 +41,7 @@ class AccountView extends StatelessWidget {
                 },
               ),
 
-              // Ny snygg grön bar med Konto
+              // Ny snygg grön bar med "Fortsätt handla"-knapp + Konto + Köphistorik-knapp
               _promoBar(context),
 
               // Innehåll med scroll
@@ -137,6 +137,35 @@ class AccountView extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+          // "Fortsätt handla" knapp med pil-ikon
+          ElevatedButton.icon(
+            onPressed: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => const MainView()),
+              );
+            },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: const Color(0xFF3D5430),
+              foregroundColor: Colors.white,
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(50),
+              ),
+            ),
+            icon: const Icon(Icons.arrow_back),
+            label: Text(
+              'Fortsätt handla',
+              style: GoogleFonts.reemKufi(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+
+          const SizedBox(width: 12),
+
+          // Text "Konto"
           Text(
             'Konto',
             style: GoogleFonts.reemKufi(
@@ -144,7 +173,9 @@ class AccountView extends StatelessWidget {
               fontWeight: FontWeight.w700,
             ),
           ),
+
           const Spacer(),
+
           Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(18),

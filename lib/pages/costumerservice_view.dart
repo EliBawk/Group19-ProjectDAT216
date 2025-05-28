@@ -1,4 +1,5 @@
 import 'package:api_test/pages/account_view.dart';
+import 'package:api_test/pages/main_view.dart'; // <-- Lägg till denna import
 import 'package:api_test/widgets/custume_header.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -25,21 +26,54 @@ class CustomerServiceView extends StatelessWidget {
             onCategoriesPressed: () {},
           ),
 
-          // Ljusgrön rektangel under headern
+          // Ljusgrön rektangel med pil-knapp och rubrik
           Container(
             width: double.infinity,
             color: const Color(0xFFE4FEDD),
             padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-            child: Text(
-              'Kundservice',
-              style: GoogleFonts.reemKufi(
-                fontSize: 30,
-                fontWeight: FontWeight.w700,
-              ),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                ElevatedButton.icon(
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (context) => const MainView()),
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFF3D5430),
+                    foregroundColor: Colors.white,
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 10,
+                    ),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(50),
+                    ),
+                  ),
+                  icon: const Icon(Icons.arrow_back),
+                  label: Text(
+                    'Fortsätt handla',
+                    style: GoogleFonts.reemKufi(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 16),
+                Text(
+                  'Kundservice',
+                  style: GoogleFonts.reemKufi(
+                    fontSize: 30,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+              ],
             ),
           ),
 
-          // Scrollbar för hela sidan
+          // Innehållet i scrollområdet
           Expanded(
             child: SingleChildScrollView(
               padding: const EdgeInsets.all(24.0),
@@ -56,7 +90,7 @@ class CustomerServiceView extends StatelessWidget {
                   ),
                   _questionWithAnswer(
                     "Hur uppdaterar jag mina kontouppgifter?",
-                    "Gå till 'Konto' uppe till höger och välj 'Inställningar'. Där kan du ändra dina adressuppgifter, lösenord och kontaktuppgifter enkelt och säkert.",
+                    "Gå till 'Konto' uppe till höger. Där kan du ändra dina adressuppgifter, lösenord och kontaktuppgifter enkelt och säkert.",
                   ),
                   _questionWithAnswer(
                     "Vilka betalningsmetoder accepteras?",
@@ -69,7 +103,6 @@ class CustomerServiceView extends StatelessWidget {
 
                   const SizedBox(height: 30),
 
-                  // Kontakta oss via mail
                   Text(
                     'Kontakta oss via mail:',
                     style: GoogleFonts.reemKufi(

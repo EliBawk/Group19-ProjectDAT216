@@ -55,7 +55,7 @@ class MainView extends StatelessWidget {
               children: [
                 _leftPanel(context, iMat),
                 SizedBox(
-                  width: 966,
+                  width: 780,
                   //height: 400,
                   child: Padding(
                     padding: const EdgeInsets.only(left:10.0, right: 10.0),
@@ -84,7 +84,7 @@ class MainView extends StatelessWidget {
             style: GoogleFonts.reemKufi(
                 fontSize: 20, fontWeight: FontWeight.w700),
           ),
-          SizedBox(height: 533, child: CartView()),
+          SizedBox(height: 367, child: CartView()),
           Padding(
             padding: const EdgeInsets.all(10.0),
             child: FilledButton(

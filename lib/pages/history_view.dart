@@ -3,7 +3,6 @@ import 'package:api_test/model/imat/order.dart';
 import 'package:api_test/model/imat_data_handler.dart';
 import 'package:api_test/pages/account_view.dart';
 import 'package:api_test/widgets/custume_header.dart';
-import 'package:api_test/widgets/lower_header.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -33,40 +32,78 @@ class _HistoryViewState extends State<HistoryView> {
                 context,
                 MaterialPageRoute(builder: (context) => const AccountView()),
               );
-            }, // Add account navigation if needed
-            onCartPressed: () {}, 
+            },
+            onCartPressed: () {},
             onCategoriesPressed: () {},
           ),
-          
+
+          // Ljusgrön box med "Fortsätt handla"-knapp och "Orderhistorik"
+          Container(
+            width: double.infinity,
+            color: const Color(0xFFE4FEDD), // ljusgrön
+            padding: const EdgeInsets.only(top: 8, left: 16, right: 16, bottom: 0), // bottenpadding borttagen
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                ElevatedButton.icon(
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (context) => const AccountView()),
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFF3D5430),
+                    foregroundColor: Colors.white,
+                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(50),
+                    ),
+                  ),
+                  icon: const Icon(Icons.arrow_back),
+                  label: Text(
+                    'Fortsätt handla',
+                    style: GoogleFonts.reemKufi(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 16),
+                Text(
+                  'Orderhistorik',
+                  style: GoogleFonts.reemKufi(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+          ),
+
           Expanded(
             child: Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    'Orderhistorik',
-                    style: GoogleFonts.reemKufi(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(height: 20),
                   Expanded(
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        // Order list
+                        // Orders-listan, mellangrön box
                         Container(
                           width: 300,
                           decoration: BoxDecoration(
-                            color: const Color.fromARGB(255, 154, 172, 134),
+                            color: const Color(0xFF91C184), // mellangrön färg
                             borderRadius: BorderRadius.circular(8),
                           ),
                           child: _ordersList(orders),
                         ),
+
                         const SizedBox(width: 20),
-                        // Order details
+
+                        // Orderdetaljer
                         Expanded(
                           child: _orderDetails(_selectedOrder),
                         ),
@@ -88,7 +125,12 @@ class _HistoryViewState extends State<HistoryView> {
       itemBuilder: (context, index) {
         final order = orders[index];
         return Card(
-          margin: const EdgeInsets.all(8),
+          margin: const EdgeInsets.only(
+            left: 8,
+            right: 8,
+            bottom: 8,
+            top: 8,  // Top margin även på första kortet
+          ),
           elevation: 2,
           child: ListTile(
             onTap: () => _selectOrder(order),
@@ -166,7 +208,6 @@ class _HistoryViewState extends State<HistoryView> {
               ),
             ),
             const SizedBox(height: 10),
-            // Scrollable product list
             Expanded(
               child: SingleChildScrollView(
                 child: Column(

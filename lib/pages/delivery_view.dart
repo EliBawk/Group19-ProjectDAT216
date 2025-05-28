@@ -1,4 +1,5 @@
 import 'package:api_test/pages/credentials_view.dart';
+import 'package:api_test/pages/reciept_view.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
@@ -6,10 +7,7 @@ import 'package:provider/provider.dart';
 import 'package:api_test/model/imat_data_handler.dart';
 import 'package:api_test/model/imat/customer.dart';
 import 'package:api_test/widgets/custume_header.dart';
-import 'package:intl/date_symbol_data_local.dart'; // För svenska datum
-import 'package:api_test/pages/main_view.dart';
-
-
+import 'package:intl/date_symbol_data_local.dart';
 
 class DeliveryView extends StatefulWidget {
   const DeliveryView({super.key});
@@ -24,7 +22,8 @@ class _DeliveryViewState extends State<DeliveryView> {
     super.initState();
     initializeDateFormatting('sv_SE', null);
   }
-  DateTime _currentDisplayMonth;
+
+  DateTime _currentDisplayMonth = DateTime.now();
   DateTime? _selectedDate;
   final List<String> _deliveryTimes = [
     '08:00-10:00',
@@ -35,8 +34,6 @@ class _DeliveryViewState extends State<DeliveryView> {
     '18:00-20:00',
   ];
   String? _selectedTime;
-
-  _DeliveryViewState() : _currentDisplayMonth = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
@@ -51,37 +48,64 @@ class _DeliveryViewState extends State<DeliveryView> {
             onCartPressed: () {},
             onCategoriesPressed: () {},
           ),
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Align(
-                    alignment: Alignment.center,
-                    child: Container(
-                      
-                      decoration: BoxDecoration(
-                        color: const Color(0xFF3D5430),
-                        borderRadius: BorderRadius.circular(25),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 16.0,
-                          vertical: 8.0,
+          Expanded(
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: const Color(0xFF3D5430),
+                          borderRadius: BorderRadius.circular(25),
                         ),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            // Current step with white background
-                            Container(
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(20),),
-                                
-                              child: TextButton(
-                                onPressed: () {Navigator.push(
-                                context,
-                                MaterialPageRoute(builder: (context) => const CredentialsView()),
-                              );},
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 16.0,
+                            vertical: 8.0,
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Container(
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                child: TextButton(
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => const CredentialsView()),
+                                    );
+                                  },
+                                  child: Text(
+                                    'Personuppgifter',
+                                    style: GoogleFonts.reemKufi(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      color: const Color(0xFF3D5430),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(width: 8),
+                              const Icon(Icons.chevron_right, color: Colors.white, size: 20),
+                              const SizedBox(width: 8),
+                              Container(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 12.0,
+                                  vertical: 6.0,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
                                 child: Text(
-                                  'Personuppgifter',
+                                  'Leverans',
                                   style: GoogleFonts.reemKufi(
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold,
@@ -89,199 +113,153 @@ class _DeliveryViewState extends State<DeliveryView> {
                                   ),
                                 ),
                               ),
-                            ),
-                            const SizedBox(width: 8),
-                            Icon(
-                              Icons.chevron_right,
-                              color: Colors.white,
-                              size: 20,
-                            ),
-                            const SizedBox(width: 8),
-                            // Next steps
-                            Container(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 12.0,
-                                vertical: 6.0,
-                              ),
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              child: Text(
-                                'Leverans',
+                              const SizedBox(width: 8),
+                              const Icon(Icons.chevron_right, color: Colors.white, size: 20),
+                              const SizedBox(width: 8),
+                              Text(
+                                'Kvitto',
                                 style: GoogleFonts.reemKufi(
                                   fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                  color: const Color(0xFF3D5430),
+                                  color: Colors.white,
                                 ),
                               ),
-                            ),
-                            
-                            
-                            const SizedBox(width: 8),
-                            Icon(
-                              Icons.chevron_right,
-                              color: Colors.white,
-                              size: 20,
-                            ),
-                            const SizedBox(width: 8),
-                            Text(
-                              'Kvitto',
-                              style: GoogleFonts.reemKufi(
-                                fontSize: 16,
-                                    
-                                color: Colors.white,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // Kalender
-                SizedBox(
-                  width: 400,
-                  height: 400, // Höjd ökad för månadsnavigering
-                  child: Column(
-                    children: [
-                      // Månadsnavigering
-                      _buildMonthNavigation(),
-                      const SizedBox(height: 10),
-                      Expanded(child: _buildCalendarGrid()),
-                    ],
-                  ),
-                ),
-                
-                // Leveransuppgifter
-                SizedBox(
-                  width: 300,
-                  child: Column(
-                    children: [
-                      SizedBox(
-                      
-                        child: Padding(
-                          padding: const EdgeInsets.all(16.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Leveransuppgifter',
-                                style: GoogleFonts.reemKufi(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              const Divider(thickness: 2),
-                              const SizedBox(height: 10),
-                              _buildDetailItem('Namn', '${customer.firstName} ${customer.lastName}'),
-                              _buildDetailItem('Telefon', customer.mobilePhoneNumber),
-                              _buildDetailItem('E-post', customer.email),
-                              _buildDetailItem('Adress', customer.address),
-                              _buildDetailItem('Postnummer', customer.postCode),
-                              _buildDetailItem('Ort', customer.postAddress),
                             ],
                           ),
                         ),
                       ),
-                      const SizedBox(height: 20),
-                    ],
+                    ),
                   ),
-                ),
-                
-                
-                // Tidsluckor
-                SizedBox(
-                  width: 300,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                  Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          width: 400,
+                          height: 400,
+                          child: Column(
+                            children: [
+                              _buildMonthNavigation(),
+                              const SizedBox(height: 10),
+                              Expanded(child: _buildCalendarGrid()),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(width: 20),
+                        SizedBox(
+                          width: 300,
+                          child: Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Leveransuppgifter',
+                                  style: GoogleFonts.reemKufi(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                const Divider(thickness: 2),
+                                const SizedBox(height: 10),
+                                _buildDetailItem('Namn', '${customer.firstName} ${customer.lastName}'),
+                                _buildDetailItem('Telefon', customer.mobilePhoneNumber),
+                                _buildDetailItem('E-post', customer.email),
+                                _buildDetailItem('Adress', customer.address),
+                                _buildDetailItem('Postnummer', customer.postCode),
+                                _buildDetailItem('Ort', customer.postAddress),
+                              ],
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: 20),
+                        SizedBox(
+                          width: 300,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Välj tidpunkt',
+                                style: GoogleFonts.reemKufi(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                  color: const Color(0xFF3D5430),
+                                ),
+                              ),
+                              const SizedBox(height: 12),
+                              _buildTimeSlots(),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 100),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Text(
-                        'Välj tidpunkt',
-                        style: GoogleFonts.reemKufi(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
+                      Container(
+                        decoration: BoxDecoration(
                           color: const Color(0xFF3D5430),
+                          borderRadius: BorderRadius.circular(40),
+                        ),
+                        child: TextButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => const CredentialsView()),
+                            );
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              'Tillbaka till personuppgifter',
+                              style: GoogleFonts.reemKufi(
+                                fontSize: 40,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
                         ),
                       ),
-                      const SizedBox(height: 12),
-                      _buildTimeSlots(),
+                      Container(
+                        decoration: BoxDecoration(
+                          color: const Color(0xFF3D5430),
+                          borderRadius: BorderRadius.circular(40),
+                        ),
+                        child: TextButton(
+                          onPressed: () {
+                            iMat.placeOrder();
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => RecieptView()),
+                            );
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              'Bekräfta köp!',
+                              style: GoogleFonts.reemKufi(
+                                fontSize: 40,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ),
+                      )
                     ],
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
-          SizedBox(
-            height: 100,
-            width: 200,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-
-            children: [
-              Container(
-                decoration: BoxDecoration(
-                        color: const Color(0xFF3D5430),
-                        borderRadius: BorderRadius.circular(40),
-                      ),
-                child: TextButton(
-                  onPressed: () {Navigator.push(
-                                context,
-                                MaterialPageRoute(builder: (context) => const CredentialsView()),
-                              );},
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                        'Tillbaka till personuppgifter',
-                        style: GoogleFonts.reemKufi(
-                                      fontSize: 40,
-                                      fontWeight: FontWeight.bold,
-                                      color:  Colors.white,
-                                    ),
-                                  ),
-                ),
-                ),
-              ),
-              Container(
-                decoration: BoxDecoration(
-                        color: const Color(0xFF3D5430),
-                        borderRadius: BorderRadius.circular(40),
-                      ),
-                child: TextButton(
-                  
-                      onPressed: () {
-                        iMat.placeOrder();
-                    Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => MainView()),
-                  ); 
-                },
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                        'Bekräfta köp!',
-                        style: GoogleFonts.reemKufi(
-                                      fontSize: 40,
-                                      fontWeight: FontWeight.bold,
-                                      color:  Colors.white,
-                                    ),
-                                  ),
-                ),
-                ),
-              )
-            ],
-          )
         ],
       ),
     );
   }
 
-  // Ny metod för månadsnavigering
   Widget _buildMonthNavigation() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -290,16 +268,13 @@ class _DeliveryViewState extends State<DeliveryView> {
           icon: const Icon(Icons.chevron_left),
           onPressed: () {
             setState(() {
-              _currentDisplayMonth = DateTime(
-                _currentDisplayMonth.year,
-                _currentDisplayMonth.month - 1,
-                1);
+              _currentDisplayMonth = DateTime(_currentDisplayMonth.year, _currentDisplayMonth.month - 1);
             });
           },
         ),
         Text(
-        DateFormat('MMMM', 'sv_SE').format(_currentDisplayMonth).toUpperCase(),
-            style:GoogleFonts.reemKufi(
+          DateFormat('MMMM', 'sv_SE').format(_currentDisplayMonth).toUpperCase(),
+          style: GoogleFonts.reemKufi(
             fontSize: 20,
             fontWeight: FontWeight.bold,
             color: const Color(0xFF3D5430),
@@ -309,10 +284,7 @@ class _DeliveryViewState extends State<DeliveryView> {
           icon: const Icon(Icons.chevron_right),
           onPressed: () {
             setState(() {
-              _currentDisplayMonth = DateTime(
-                _currentDisplayMonth.year,
-                _currentDisplayMonth.month + 1,
-                1);
+              _currentDisplayMonth = DateTime(_currentDisplayMonth.year, _currentDisplayMonth.month + 1);
             });
           },
         ),
@@ -326,8 +298,6 @@ class _DeliveryViewState extends State<DeliveryView> {
     final startingWeekday = firstDayOfMonth.weekday;
 
     List<TableRow> rows = [];
-
-    // Lägg till veckodagar
     rows.add(
       TableRow(
         children: ['Mån', 'Tis', 'Ons', 'Tor', 'Fre', 'Lör', 'Sön']
@@ -349,8 +319,6 @@ class _DeliveryViewState extends State<DeliveryView> {
 
     List<Widget> currentWeek = [];
     int dayCounter = 1;
-
-    // Lägg till tomma celler för dagar i förra månaden
     for (int i = 1; i < startingWeekday; i++) {
       currentWeek.add(Container());
     }
@@ -405,7 +373,6 @@ class _DeliveryViewState extends State<DeliveryView> {
       );
 
       dayCounter++;
-
       if (currentWeek.length == 7 || dayCounter > daysInMonth) {
         while (currentWeek.length < 7) {
           currentWeek.add(Container());
@@ -417,18 +384,8 @@ class _DeliveryViewState extends State<DeliveryView> {
 
     return Table(
       defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-      columnWidths: const {
-        0: FlexColumnWidth(1),
-        1: FlexColumnWidth(1),
-        2: FlexColumnWidth(1),
-        3: FlexColumnWidth(1),
-        4: FlexColumnWidth(1),
-        5: FlexColumnWidth(1),
-        6: FlexColumnWidth(1),
-      },
       children: rows,
     );
-    
   }
 
   Widget _buildDetailItem(String label, String? value) {
@@ -476,14 +433,10 @@ class _DeliveryViewState extends State<DeliveryView> {
               width: double.infinity,
               padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
               decoration: BoxDecoration(
-                color: isSelected 
-                    ? const Color(0xFF3D5430) 
-                    : const Color(0xFFC8E6C9),
+                color: isSelected ? const Color(0xFF3D5430) : const Color(0xFFC8E6C9),
                 borderRadius: BorderRadius.circular(8),
                 border: Border.all(
-                  color: isSelected 
-                      ? const Color(0xFF3D5430) 
-                      : Colors.grey[400]!,
+                  color: isSelected ? const Color(0xFF3D5430) : Colors.grey[400]!,
                   width: 1,
                 ),
               ),
@@ -500,7 +453,7 @@ class _DeliveryViewState extends State<DeliveryView> {
                         width: 2,
                       ),
                     ),
-                    child: isSelected 
+                    child: isSelected
                         ? Center(
                             child: Container(
                               width: 10,

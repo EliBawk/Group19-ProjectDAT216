@@ -29,7 +29,7 @@ class StartView extends StatelessWidget {
               color: const Color(0xFFE4FEDD),
               alignment: Alignment.center,
               child: Text(
-                'Välkommen Gördis',
+                'Välkommen till iMat!',
                 style: GoogleFonts.reemKufi(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
