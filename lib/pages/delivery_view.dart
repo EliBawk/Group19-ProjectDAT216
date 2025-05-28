@@ -136,18 +136,6 @@ class _DeliveryViewState extends State<DeliveryView> {
                       children: [
                         SizedBox(
                           width: 400,
-                          height: 400,
-                          child: Column(
-                            children: [
-                              _buildMonthNavigation(),
-                              const SizedBox(height: 10),
-                              Expanded(child: _buildCalendarGrid()),
-                            ],
-                          ),
-                        ),
-                        const SizedBox(width: 20),
-                        SizedBox(
-                          width: 300,
                           child: Padding(
                             padding: const EdgeInsets.all(16.0),
                             child: Column(
@@ -172,7 +160,20 @@ class _DeliveryViewState extends State<DeliveryView> {
                             ),
                           ),
                         ),
-                        const SizedBox(width: 20),
+                        const SizedBox(width: 100),
+                        SizedBox(
+                          width: 400,
+                          height: 400,
+                          child: Column(
+                            children: [
+                              _buildMonthNavigation(),
+                              const SizedBox(height: 10),
+                              Expanded(child: _buildCalendarGrid()),
+                            ],
+                          ),
+                        ),
+                        
+                        const SizedBox(width: 200),
                         SizedBox(
                           width: 300,
                           child: Column(

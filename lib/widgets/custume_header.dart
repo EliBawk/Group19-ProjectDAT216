@@ -1,8 +1,10 @@
+import 'package:api_test/model/imat_data_handler.dart';
+import 'package:api_test/pages/account_view.dart';
 import 'package:api_test/pages/costumerservice_view.dart';
 import 'package:api_test/pages/main_view.dart';
-import 'package:api_test/pages/costumerservice_view.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class CustomHeader extends StatelessWidget {
   final VoidCallback onAccountPressed;
@@ -44,37 +46,41 @@ class CustomHeader extends StatelessWidget {
 
           // Mitten: sökfält
           Padding(
-            padding: const EdgeInsets.only(top: 15),
-            child: Align(
-              alignment: Alignment.center,
-              child: SizedBox(
-                width: MediaQuery.of(context).size.width / 3,
-                height: 40,
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(18),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.4),
-                        blurRadius: 6,
-                        offset: const Offset(0, 3),
-                      ),
-                    ],
-                  ),
-                  child: const TextField(
-                    decoration: InputDecoration(
-                      contentPadding: EdgeInsets.symmetric(vertical: 7),
-                      hintText: 'Sök...',
-                      border: InputBorder.none,
-                      prefixIcon: Icon(Icons.search, color: Color(0xFF3D5430)),
-                    ),
-                    style: TextStyle(color: Colors.black87),
-                  ),
-                ),
-              ),
+  padding: const EdgeInsets.only(top: 15),
+  child: Align(
+    alignment: Alignment.center,
+    child: SizedBox(
+      width: MediaQuery.of(context).size.width / 3,
+      height: 40,
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(18),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.4),
+              blurRadius: 6,
+              offset: const Offset(0, 3),
             ),
+          ],
+        ),
+        child: TextField(
+          decoration: const InputDecoration(
+            contentPadding: EdgeInsets.symmetric(vertical: 7),
+            hintText: 'Sök...',
+            border: InputBorder.none,
+            prefixIcon: Icon(Icons.search, color: Color(0xFF3D5430)),
           ),
+          style: const TextStyle(color: Colors.black87),
+          onChanged: (value) {
+            final iMat = Provider.of<ImatDataHandler>(context, listen: false);
+            iMat.selectSelection(iMat.findProducts(value));
+          },
+        ),
+      ),
+    ),
+  ),
+),
 
           // Höger: knappar med padding så konto-knappen ligger 16 px från höger
           Align(
@@ -148,7 +154,14 @@ class CustomHeader extends StatelessWidget {
                         borderRadius: BorderRadius.circular(50),
                       ),
                       child: TextButton(
-                        onPressed: onAccountPressed,
+                        onPressed:() {Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const AccountView()),
+                      );
+            
+
+                          
+                        },
                         style: TextButton.styleFrom(
                           fixedSize: const Size(125, 50),
                           backgroundColor: const Color(0xFF3D5430),

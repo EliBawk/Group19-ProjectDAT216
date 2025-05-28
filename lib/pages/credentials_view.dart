@@ -4,7 +4,9 @@ import 'package:api_test/model/imat/credit_card.dart';
 import 'package:api_test/model/imat/customer.dart';
 import 'package:api_test/model/imat_data_handler.dart';
 import 'package:api_test/pages/account_view.dart';
+import 'package:api_test/pages/costumerservice_view.dart';
 import 'package:api_test/pages/delivery_view.dart';
+import 'package:api_test/pages/main_view.dart';
 import 'package:api_test/widgets/card_details.dart';
 import 'package:api_test/widgets/customer_details.dart';
 import 'package:api_test/widgets/custume_header.dart';
@@ -35,8 +37,14 @@ class CredentialsView extends StatelessWidget {
                 MaterialPageRoute(builder: (context) => const AccountView()),
               );
             },
-            onCartPressed: () {}, 
-            onCategoriesPressed: () {},
+            onCartPressed: () {Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const CustomerServiceView()),
+              );}, 
+            onCategoriesPressed: () {Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const MainView()),
+              );},
           ),
           
           

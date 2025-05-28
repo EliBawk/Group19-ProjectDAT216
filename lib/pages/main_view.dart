@@ -55,7 +55,7 @@ class MainView extends StatelessWidget {
               children: [
                 _leftPanel(context, iMat),
                 SizedBox(
-                  width: 780,
+                  width: 966,
                   //height: 400,
                   child: Padding(
                     padding: const EdgeInsets.only(left:10.0, right: 10.0),
@@ -84,7 +84,7 @@ class MainView extends StatelessWidget {
             style: GoogleFonts.reemKufi(
                 fontSize: 20, fontWeight: FontWeight.w700),
           ),
-          SizedBox(height: 367, child: CartView()),
+          SizedBox(height: 533, child: CartView()),
           Padding(
             padding: const EdgeInsets.all(10.0),
             child: FilledButton(
@@ -127,7 +127,7 @@ class MainView extends StatelessWidget {
                 child: Text(
                   'Visa allt',
                   style: GoogleFonts.reemKufi(
-                    fontSize: 14,
+                    fontSize: 18,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -151,7 +151,7 @@ class MainView extends StatelessWidget {
                 child: Text(
                   'Kampanj',
                   style: GoogleFonts.reemKufi(
-                    fontSize: 14,
+                    fontSize: 18,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -176,9 +176,9 @@ class MainView extends StatelessWidget {
                   iMat.selectSelection(selected);
                 },
                 child: Text(
-                  'Frukt & Grönt',
+                  'Frukt & grönt',
                   style: GoogleFonts.reemKufi(
-                    fontSize: 14,
+                    fontSize: 18,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -199,7 +199,7 @@ class MainView extends StatelessWidget {
                 child: Text(
                   'Kolhydrater',
                   style: GoogleFonts.reemKufi(
-                    fontSize: 14,
+                    fontSize: 18,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -213,14 +213,35 @@ class MainView extends StatelessWidget {
                 onPressed: () {
                   var selected = [
                     ...iMat.findProductsByCategory(ProductCategory.FLOUR_SUGAR_SALT),
-                    ...iMat.findProductsByCategory(ProductCategory.POD),
+              
                   ];
                   iMat.selectSelection(selected);
                 },
                 child: Text(
                   'Torrvaror',
                   style: GoogleFonts.reemKufi(
-                    fontSize: 14,
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(height: AppTheme.paddingSmall),
+            SizedBox(
+              width: 160,
+              height: 40,
+              child: ElevatedButton(
+                onPressed: () {
+                  var selected = [
+                    
+                    ...iMat.findProductsByCategory(ProductCategory.POD),
+                  ];
+                  iMat.selectSelection(selected);
+                },
+                child: Text(
+                  'Baljväxter',
+                  style: GoogleFonts.reemKufi(
+                    fontSize: 18,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -239,7 +260,7 @@ class MainView extends StatelessWidget {
                 child: Text(
                   'Bröd',
                   style: GoogleFonts.reemKufi(
-                    fontSize: 14,
+                    fontSize: 18,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -258,7 +279,7 @@ class MainView extends StatelessWidget {
                 child: Text(
                   'Kaffe/te',
                   style: GoogleFonts.reemKufi(
-                    fontSize: 14,
+                    fontSize: 18,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -277,7 +298,7 @@ class MainView extends StatelessWidget {
                 child: Text(
                   'Kalla drycker',
                   style: GoogleFonts.reemKufi(
-                    fontSize: 14,
+                    fontSize: 18,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -296,7 +317,7 @@ class MainView extends StatelessWidget {
                 child: Text(
                   'Fisk',
                   style: GoogleFonts.reemKufi(
-                    fontSize: 14,
+                    fontSize: 18,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -315,7 +336,7 @@ class MainView extends StatelessWidget {
                 child: Text(
                   'Kött',
                   style: GoogleFonts.reemKufi(
-                    fontSize: 14,
+                    fontSize: 18,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -332,15 +353,15 @@ class MainView extends StatelessWidget {
                   );
                 },
                 child: Text(
-                  'Mejeriprodukter',
+                  'Mejeri',
                   style: GoogleFonts.reemKufi(
-                    fontSize: 14,
+                    fontSize: 18,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
             ),
-            SizedBox(height: AppTheme.paddingSmall),
+            /* SizedBox(height: AppTheme.paddingSmall),
             SizedBox(
               width: 160,
               height: 40,
@@ -351,12 +372,12 @@ class MainView extends StatelessWidget {
                 child: Text(
                   'Söktest',
                   style: GoogleFonts.reemKufi(
-                    fontSize: 14,
+                    fontSize: 18,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
-            ),
+            ), */
             SizedBox(height: AppTheme.paddingSmall),
             SizedBox(
               width: 160,
@@ -368,9 +389,9 @@ class MainView extends StatelessWidget {
                   );
                 },
                 child: Text(
-                  'Nötter och frön',
+                  'Nötter & frön',
                   style: GoogleFonts.reemKufi(
-                    fontSize: 14,
+                    fontSize: 17,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -389,7 +410,7 @@ class MainView extends StatelessWidget {
                 child: Text(
                   'Sötsaker',
                   style: GoogleFonts.reemKufi(
-                    fontSize: 14,
+                    fontSize: 18,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -408,7 +429,7 @@ class MainView extends StatelessWidget {
                 child: Text(
                   'Örter',
                   style: GoogleFonts.reemKufi(
-                    fontSize: 14,
+                    fontSize: 18,
                     fontWeight: FontWeight.bold,
                   ),
                 ),

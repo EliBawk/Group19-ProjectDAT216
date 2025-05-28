@@ -11,6 +11,8 @@ class RecieptView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final customerEmail = context.read<ImatDataHandler>().getCustomer().email;
+    final orders = context.read<ImatDataHandler>().orders;
+    final latestOrderNumber = orders.isNotEmpty ? orders.last.orderNumber.toString() : '1234567'; // Fallback if no orders exist
 
     return Scaffold(
       body: Column(
@@ -24,7 +26,6 @@ class RecieptView extends StatelessWidget {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  const SizedBox(height: 16),
                   Container(
                     width: double.infinity,
                     padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
@@ -34,7 +35,7 @@ class RecieptView extends StatelessWidget {
                       style: GoogleFonts.reemKufi(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
-                        color: Colors.black, // svart färg
+                        color: Colors.black,
                       ),
                     ),
                   ),
@@ -77,7 +78,6 @@ class RecieptView extends StatelessWidget {
                   Container(
                     color: const Color(0xFFDFF7D9),
                     padding: const EdgeInsets.all(16),
-                    margin: const EdgeInsets.symmetric(horizontal: 24),
                     child: Center(
                       child: Text(
                         'Tack för att du handlar hos iMAT!',
@@ -111,7 +111,7 @@ class RecieptView extends StatelessWidget {
                               text: 'Ordernummer: ',
                               style: TextStyle(fontWeight: FontWeight.bold),
                             ),
-                            const TextSpan(text: '1234567'), // Du kan göra detta dynamiskt senare
+                            TextSpan(text: latestOrderNumber), // Dynamic order number
                           ],
                         ),
                       ),
@@ -137,7 +137,7 @@ class RecieptView extends StatelessWidget {
                   ),
                   const SizedBox(height: 40),
                   Image.asset(
-                   "assets/images/iMat.png", // <-- ändra till din logotypväg
+                    "assets/images/iMat.png",
                     height: 80,
                   ),
                   const SizedBox(height: 32),
